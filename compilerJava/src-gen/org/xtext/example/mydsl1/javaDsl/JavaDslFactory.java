@@ -222,6 +222,15 @@ public interface JavaDslFactory extends EFactory
   MethodHeader createMethodHeader();
 
   /**
+   * Returns a new object of class '<em>Result Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Result Type</em>'.
+   * @generated
+   */
+  ResultType createResultType();
+
+  /**
    * Returns a new object of class '<em>Method Declarator</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -292,6 +301,15 @@ public interface JavaDslFactory extends EFactory
    * @generated
    */
   ArrayInitializer createArrayInitializer();
+
+  /**
+   * Returns a new object of class '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type</em>'.
+   * @generated
+   */
+  Type createType();
 
   /**
    * Returns a new object of class '<em>Block</em>'.

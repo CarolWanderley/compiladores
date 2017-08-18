@@ -14,6 +14,6 @@ package org.xtext.example.mydsl1.javaDsl;
  * @model
  * @generated
  */
-public interface Expression extends VariableInitializer, ConstantExpression, PrimaryNoNewArray
+public interface Expression extends ConstantExpression, PrimaryNoNewArray
 {
 } // Expression

@@ -2914,9 +2914,9 @@ rule__ClassMemberDeclaration__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getClassMemberDeclarationAccess().getMethodDeclarationParserRuleCall_1()); }
-		ruleMethodDeclaration
-		{ after(grammarAccess.getClassMemberDeclarationAccess().getMethodDeclarationParserRuleCall_1()); }
+		{ before(grammarAccess.getClassMemberDeclarationAccess().getMethodAssignment_1()); }
+		(rule__ClassMemberDeclaration__MethodAssignment_1)
+		{ after(grammarAccess.getClassMemberDeclarationAccess().getMethodAssignment_1()); }
 	)
 ;
 finally {
@@ -3028,9 +3028,9 @@ rule__VariableInitializer__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getVariableInitializerAccess().getExpressionParserRuleCall_0()); }
-		ruleExpression
-		{ after(grammarAccess.getVariableInitializerAccess().getExpressionParserRuleCall_0()); }
+		{ before(grammarAccess.getVariableInitializerAccess().getExpAssignment_0()); }
+		(rule__VariableInitializer__ExpAssignment_0)
+		{ after(grammarAccess.getVariableInitializerAccess().getExpAssignment_0()); }
 	)
 	|
 	(
@@ -3070,9 +3070,9 @@ rule__ResultType__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getResultTypeAccess().getTypeParserRuleCall_0()); }
-		ruleType
-		{ after(grammarAccess.getResultTypeAccess().getTypeParserRuleCall_0()); }
+		{ before(grammarAccess.getResultTypeAccess().getTypeAssignment_0()); }
+		(rule__ResultType__TypeAssignment_0)
+		{ after(grammarAccess.getResultTypeAccess().getTypeAssignment_0()); }
 	)
 	|
 	(
@@ -3238,15 +3238,15 @@ rule__Type__Alternatives_0
 	}
 :
 	(
-		{ before(grammarAccess.getTypeAccess().getPrimitiveTypeParserRuleCall_0_0()); }
-		rulePrimitiveType
-		{ after(grammarAccess.getTypeAccess().getPrimitiveTypeParserRuleCall_0_0()); }
+		{ before(grammarAccess.getTypeAccess().getNameAssignment_0_0()); }
+		(rule__Type__NameAssignment_0_0)
+		{ after(grammarAccess.getTypeAccess().getNameAssignment_0_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getTypeAccess().getReferenceTypeParserRuleCall_0_1()); }
-		ruleReferenceType
-		{ after(grammarAccess.getTypeAccess().getReferenceTypeParserRuleCall_0_1()); }
+		{ before(grammarAccess.getTypeAccess().getNameAssignment_0_1()); }
+		(rule__Type__NameAssignment_0_1)
+		{ after(grammarAccess.getTypeAccess().getNameAssignment_0_1()); }
 	)
 ;
 finally {
@@ -14990,6 +14990,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__ClassMemberDeclaration__MethodAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getClassMemberDeclarationAccess().getMethodMethodDeclarationParserRuleCall_1_0()); }
+		ruleMethodDeclaration
+		{ after(grammarAccess.getClassMemberDeclarationAccess().getMethodMethodDeclarationParserRuleCall_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__StaticInitializer__CodeAssignment_1
 	@init {
 		int stackSize = keepStackSize();
@@ -15350,6 +15365,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__VariableInitializer__ExpAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getVariableInitializerAccess().getExpExpressionParserRuleCall_0_0()); }
+		ruleExpression
+		{ after(grammarAccess.getVariableInitializerAccess().getExpExpressionParserRuleCall_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__MethodDeclaration__SignatureAssignment_0
 	@init {
 		int stackSize = keepStackSize();
@@ -15434,6 +15464,21 @@ rule__MethodHeader__ThrowsAssignment_3
 		{ before(grammarAccess.getMethodHeaderAccess().getThrowsExceptionsParserRuleCall_3_0()); }
 		ruleExceptions
 		{ after(grammarAccess.getMethodHeaderAccess().getThrowsExceptionsParserRuleCall_3_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ResultType__TypeAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getResultTypeAccess().getTypeTypeParserRuleCall_0_0()); }
+		ruleType
+		{ after(grammarAccess.getResultTypeAccess().getTypeTypeParserRuleCall_0_0()); }
 	)
 ;
 finally {
@@ -15734,6 +15779,36 @@ rule__ArrayInitializer__ValuesAssignment_1_1_1
 		{ before(grammarAccess.getArrayInitializerAccess().getValuesVariableInitializerParserRuleCall_1_1_1_0()); }
 		ruleVariableInitializer
 		{ after(grammarAccess.getArrayInitializerAccess().getValuesVariableInitializerParserRuleCall_1_1_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Type__NameAssignment_0_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getTypeAccess().getNamePrimitiveTypeParserRuleCall_0_0_0()); }
+		rulePrimitiveType
+		{ after(grammarAccess.getTypeAccess().getNamePrimitiveTypeParserRuleCall_0_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Type__NameAssignment_0_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getTypeAccess().getNameReferenceTypeParserRuleCall_0_1_0()); }
+		ruleReferenceType
+		{ after(grammarAccess.getTypeAccess().getNameReferenceTypeParserRuleCall_0_1_0()); }
 	)
 ;
 finally {

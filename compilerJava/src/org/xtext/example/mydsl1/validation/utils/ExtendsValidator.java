@@ -11,17 +11,16 @@ public class ExtendsValidator extends Validator {
 	}
 
 	public void validate(ClassDeclaration cd) throws ValidationException {
-		if (validator.interfaces.contains(cd.getExtend())) {
+		if (cd.getExtend() != null && validator.interfaces.contains(cd.getExtend())) {
 			throw new ValidationException(cd.getExtend() + " is not a class.");
 		}
-		if (!validator.allClasses.contains(cd.getExtend())) {
+		System.out.println(validator.allClasses.toString());
+		if (cd.getExtend() != null && !validator.allClasses.contains(cd.getExtend())) {
 			throw new ValidationException(cd.getExtend() + " class does not exist.");
 		}
-		if (validator.extendsClass.get(cd.getClassName()).contains(cd.getExtend())) {
+		if (cd.getExtend() != null && validator.extendsClass.get(cd.getClassName()).contains(cd.getExtend())) {
 			throw new ValidationException(cd.getExtend() + " is already being extended.");
 		}
-		
-		// ADD EXTENDED CLASS
 		
 		this.validateImplements(cd);
 	}
@@ -29,7 +28,6 @@ public class ExtendsValidator extends Validator {
 	public void validateImplements(ClassDeclaration cd) throws ValidationException {
 		if (cd.getImplements() != null) {
 			for (String interfaceName : cd.getImplements().getInterfaces()) {
-				// ADD INTERFACE
 				this.validateInterface(cd, interfaceName);
 			}
 		}

@@ -410,13 +410,22 @@ public interface JavaDslPackage extends EPackage
   int CLASS_MEMBER_DECLARATION__FIELD = 0;
 
   /**
+   * The feature id for the '<em><b>Method</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS_MEMBER_DECLARATION__METHOD = 1;
+
+  /**
    * The number of structural features of the '<em>Class Member Declaration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS_MEMBER_DECLARATION_FEATURE_COUNT = 1;
+  int CLASS_MEMBER_DECLARATION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.StaticInitializerImpl <em>Static Initializer</em>}' class.
@@ -567,7 +576,7 @@ public interface JavaDslPackage extends EPackage
   int FORMAL_PARAMETER = 13;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -715,7 +724,7 @@ public interface JavaDslPackage extends EPackage
   int FIELD_DECLARATION__MODIFIERS = 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -789,13 +798,22 @@ public interface JavaDslPackage extends EPackage
   int VARIABLE_INITIALIZER = 19;
 
   /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_INITIALIZER__EXP = 0;
+
+  /**
    * The number of structural features of the '<em>Variable Initializer</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VARIABLE_INITIALIZER_FEATURE_COUNT = 0;
+  int VARIABLE_INITIALIZER_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.MethodDeclarationImpl <em>Method Declaration</em>}' class.
@@ -808,22 +826,13 @@ public interface JavaDslPackage extends EPackage
   int METHOD_DECLARATION = 20;
 
   /**
-   * The feature id for the '<em><b>Field</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int METHOD_DECLARATION__FIELD = CLASS_MEMBER_DECLARATION__FIELD;
-
-  /**
    * The feature id for the '<em><b>Signature</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METHOD_DECLARATION__SIGNATURE = CLASS_MEMBER_DECLARATION_FEATURE_COUNT + 0;
+  int METHOD_DECLARATION__SIGNATURE = 0;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -832,7 +841,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METHOD_DECLARATION__BODY = CLASS_MEMBER_DECLARATION_FEATURE_COUNT + 1;
+  int METHOD_DECLARATION__BODY = 1;
 
   /**
    * The number of structural features of the '<em>Method Declaration</em>' class.
@@ -841,7 +850,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int METHOD_DECLARATION_FEATURE_COUNT = CLASS_MEMBER_DECLARATION_FEATURE_COUNT + 2;
+  int METHOD_DECLARATION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.MethodHeaderImpl <em>Method Header</em>}' class.
@@ -863,7 +872,7 @@ public interface JavaDslPackage extends EPackage
   int METHOD_HEADER__MODIFIERS = 0;
 
   /**
-   * The feature id for the '<em><b>Return Type</b></em>' attribute.
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -899,6 +908,34 @@ public interface JavaDslPackage extends EPackage
   int METHOD_HEADER_FEATURE_COUNT = 4;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.ResultTypeImpl <em>Result Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl1.javaDsl.impl.ResultTypeImpl
+   * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getResultType()
+   * @generated
+   */
+  int RESULT_TYPE = 22;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESULT_TYPE__TYPE = 0;
+
+  /**
+   * The number of structural features of the '<em>Result Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESULT_TYPE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.MethodDeclaratorImpl <em>Method Declarator</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -906,7 +943,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getMethodDeclarator()
    * @generated
    */
-  int METHOD_DECLARATOR = 22;
+  int METHOD_DECLARATOR = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -943,7 +980,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getInterfaceDeclaration()
    * @generated
    */
-  int INTERFACE_DECLARATION = 23;
+  int INTERFACE_DECLARATION = 24;
 
   /**
    * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
@@ -998,7 +1035,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getExtendsInterfaces()
    * @generated
    */
-  int EXTENDS_INTERFACES = 24;
+  int EXTENDS_INTERFACES = 25;
 
   /**
    * The feature id for the '<em><b>Keyword</b></em>' attribute.
@@ -1035,7 +1072,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getInterfaceBody()
    * @generated
    */
-  int INTERFACE_BODY = 25;
+  int INTERFACE_BODY = 26;
 
   /**
    * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
@@ -1063,7 +1100,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getInterfaceMemberDeclaration()
    * @generated
    */
-  int INTERFACE_MEMBER_DECLARATION = 26;
+  int INTERFACE_MEMBER_DECLARATION = 27;
 
   /**
    * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
@@ -1091,7 +1128,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getConstantDeclaration()
    * @generated
    */
-  int CONSTANT_DECLARATION = 27;
+  int CONSTANT_DECLARATION = 28;
 
   /**
    * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
@@ -1103,7 +1140,7 @@ public interface JavaDslPackage extends EPackage
   int CONSTANT_DECLARATION__MODIFIERS = INTERFACE_MEMBER_DECLARATION__MODIFIERS;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1137,7 +1174,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getAbstractMethodDeclaration()
    * @generated
    */
-  int ABSTRACT_METHOD_DECLARATION = 28;
+  int ABSTRACT_METHOD_DECLARATION = 29;
 
   /**
    * The feature id for the '<em><b>Modifiers</b></em>' attribute list.
@@ -1149,7 +1186,7 @@ public interface JavaDslPackage extends EPackage
   int ABSTRACT_METHOD_DECLARATION__MODIFIERS = INTERFACE_MEMBER_DECLARATION__MODIFIERS;
 
   /**
-   * The feature id for the '<em><b>Return Type</b></em>' attribute.
+   * The feature id for the '<em><b>Return Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1192,7 +1229,16 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getArrayInitializer()
    * @generated
    */
-  int ARRAY_INITIALIZER = 29;
+  int ARRAY_INITIALIZER = 30;
+
+  /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARRAY_INITIALIZER__EXP = VARIABLE_INITIALIZER__EXP;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -1213,6 +1259,34 @@ public interface JavaDslPackage extends EPackage
   int ARRAY_INITIALIZER_FEATURE_COUNT = VARIABLE_INITIALIZER_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.TypeImpl <em>Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl1.javaDsl.impl.TypeImpl
+   * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getType()
+   * @generated
+   */
+  int TYPE = 31;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.BlockStatementImpl <em>Block Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1220,7 +1294,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getBlockStatement()
    * @generated
    */
-  int BLOCK_STATEMENT = 31;
+  int BLOCK_STATEMENT = 33;
 
   /**
    * The number of structural features of the '<em>Block Statement</em>' class.
@@ -1239,7 +1313,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getStatement()
    * @generated
    */
-  int STATEMENT = 33;
+  int STATEMENT = 35;
 
   /**
    * The number of structural features of the '<em>Statement</em>' class.
@@ -1258,7 +1332,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getBlock()
    * @generated
    */
-  int BLOCK = 30;
+  int BLOCK = 32;
 
   /**
    * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
@@ -1286,10 +1360,10 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getLocalVariableDeclaration()
    * @generated
    */
-  int LOCAL_VARIABLE_DECLARATION = 32;
+  int LOCAL_VARIABLE_DECLARATION = 34;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1323,7 +1397,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getLabeledStatement()
    * @generated
    */
-  int LABELED_STATEMENT = 34;
+  int LABELED_STATEMENT = 36;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1360,7 +1434,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getStatementExpression()
    * @generated
    */
-  int STATEMENT_EXPRESSION = 35;
+  int STATEMENT_EXPRESSION = 37;
 
   /**
    * The number of structural features of the '<em>Statement Expression</em>' class.
@@ -1379,7 +1453,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getIfStatement()
    * @generated
    */
-  int IF_STATEMENT = 36;
+  int IF_STATEMENT = 38;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -1425,7 +1499,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getSwitchStatement()
    * @generated
    */
-  int SWITCH_STATEMENT = 37;
+  int SWITCH_STATEMENT = 39;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1471,7 +1545,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getWhileStatement()
    * @generated
    */
-  int WHILE_STATEMENT = 38;
+  int WHILE_STATEMENT = 40;
 
   /**
    * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -1508,7 +1582,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getDoStatement()
    * @generated
    */
-  int DO_STATEMENT = 39;
+  int DO_STATEMENT = 41;
 
   /**
    * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -1545,7 +1619,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getForStatement()
    * @generated
    */
-  int FOR_STATEMENT = 40;
+  int FOR_STATEMENT = 42;
 
   /**
    * The feature id for the '<em><b>Init Expr</b></em>' containment reference.
@@ -1600,7 +1674,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getForInit()
    * @generated
    */
-  int FOR_INIT = 41;
+  int FOR_INIT = 43;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1637,7 +1711,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getForUpdate()
    * @generated
    */
-  int FOR_UPDATE = 42;
+  int FOR_UPDATE = 44;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1665,7 +1739,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getBreakStatement()
    * @generated
    */
-  int BREAK_STATEMENT = 43;
+  int BREAK_STATEMENT = 45;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' attribute.
@@ -1693,7 +1767,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getContinueStatement()
    * @generated
    */
-  int CONTINUE_STATEMENT = 44;
+  int CONTINUE_STATEMENT = 46;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' attribute.
@@ -1721,7 +1795,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getReturnStatement()
    * @generated
    */
-  int RETURN_STATEMENT = 45;
+  int RETURN_STATEMENT = 47;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1749,7 +1823,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getThrowsStatement()
    * @generated
    */
-  int THROWS_STATEMENT = 46;
+  int THROWS_STATEMENT = 48;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1777,7 +1851,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getSynchronizedStatement()
    * @generated
    */
-  int SYNCHRONIZED_STATEMENT = 47;
+  int SYNCHRONIZED_STATEMENT = 49;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1814,7 +1888,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getTryStatement()
    * @generated
    */
-  int TRY_STATEMENT = 48;
+  int TRY_STATEMENT = 50;
 
   /**
    * The feature id for the '<em><b>Try Body</b></em>' containment reference.
@@ -1869,7 +1943,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getConstantExpression()
    * @generated
    */
-  int CONSTANT_EXPRESSION = 49;
+  int CONSTANT_EXPRESSION = 51;
 
   /**
    * The number of structural features of the '<em>Constant Expression</em>' class.
@@ -1888,7 +1962,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 50;
+  int EXPRESSION = 52;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -1897,7 +1971,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__ARGS = VARIABLE_INITIALIZER_FEATURE_COUNT + 0;
+  int EXPRESSION__ARGS = CONSTANT_EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Dimensions</b></em>' containment reference list.
@@ -1906,7 +1980,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__DIMENSIONS = VARIABLE_INITIALIZER_FEATURE_COUNT + 1;
+  int EXPRESSION__DIMENSIONS = CONSTANT_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Fields</b></em>' attribute list.
@@ -1915,7 +1989,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__FIELDS = VARIABLE_INITIALIZER_FEATURE_COUNT + 2;
+  int EXPRESSION__FIELDS = CONSTANT_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Literal</b></em>' attribute.
@@ -1924,7 +1998,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__LITERAL = VARIABLE_INITIALIZER_FEATURE_COUNT + 3;
+  int EXPRESSION__LITERAL = CONSTANT_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Keyword</b></em>' attribute.
@@ -1933,7 +2007,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__KEYWORD = VARIABLE_INITIALIZER_FEATURE_COUNT + 4;
+  int EXPRESSION__KEYWORD = CONSTANT_EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Class</b></em>' containment reference.
@@ -1942,7 +2016,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__CLASS = VARIABLE_INITIALIZER_FEATURE_COUNT + 5;
+  int EXPRESSION__CLASS = CONSTANT_EXPRESSION_FEATURE_COUNT + 5;
 
   /**
    * The feature id for the '<em><b>Method</b></em>' attribute.
@@ -1951,7 +2025,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__METHOD = VARIABLE_INITIALIZER_FEATURE_COUNT + 6;
+  int EXPRESSION__METHOD = CONSTANT_EXPRESSION_FEATURE_COUNT + 6;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' attribute.
@@ -1960,7 +2034,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__REFERENCE = VARIABLE_INITIALIZER_FEATURE_COUNT + 7;
+  int EXPRESSION__REFERENCE = CONSTANT_EXPRESSION_FEATURE_COUNT + 7;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1969,7 +2043,7 @@ public interface JavaDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = VARIABLE_INITIALIZER_FEATURE_COUNT + 8;
+  int EXPRESSION_FEATURE_COUNT = CONSTANT_EXPRESSION_FEATURE_COUNT + 8;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl1.javaDsl.impl.AssignmentExpressionImpl <em>Assignment Expression</em>}' class.
@@ -1979,7 +2053,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getAssignmentExpression()
    * @generated
    */
-  int ASSIGNMENT_EXPRESSION = 51;
+  int ASSIGNMENT_EXPRESSION = 53;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -2070,7 +2144,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 52;
+  int ASSIGNMENT = 54;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -2188,7 +2262,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getLeftHandSide()
    * @generated
    */
-  int LEFT_HAND_SIDE = 53;
+  int LEFT_HAND_SIDE = 55;
 
   /**
    * The number of structural features of the '<em>Left Hand Side</em>' class.
@@ -2207,7 +2281,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getConditionalExpression()
    * @generated
    */
-  int CONDITIONAL_EXPRESSION = 54;
+  int CONDITIONAL_EXPRESSION = 56;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -2325,7 +2399,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getConditionalOrExpression()
    * @generated
    */
-  int CONDITIONAL_OR_EXPRESSION = 55;
+  int CONDITIONAL_OR_EXPRESSION = 57;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2362,7 +2436,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getConditionalAndExpression()
    * @generated
    */
-  int CONDITIONAL_AND_EXPRESSION = 56;
+  int CONDITIONAL_AND_EXPRESSION = 58;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2399,7 +2473,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getInclusiveOrExpression()
    * @generated
    */
-  int INCLUSIVE_OR_EXPRESSION = 57;
+  int INCLUSIVE_OR_EXPRESSION = 59;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2436,7 +2510,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getExclusiveOrExpression()
    * @generated
    */
-  int EXCLUSIVE_OR_EXPRESSION = 58;
+  int EXCLUSIVE_OR_EXPRESSION = 60;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2473,7 +2547,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 59;
+  int AND_EXPRESSION = 61;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2510,7 +2584,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getEqualityExpression()
    * @generated
    */
-  int EQUALITY_EXPRESSION = 60;
+  int EQUALITY_EXPRESSION = 62;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2547,7 +2621,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getRelationalExpression()
    * @generated
    */
-  int RELATIONAL_EXPRESSION = 61;
+  int RELATIONAL_EXPRESSION = 63;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2593,7 +2667,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getShiftExpression()
    * @generated
    */
-  int SHIFT_EXPRESSION = 62;
+  int SHIFT_EXPRESSION = 64;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2630,7 +2704,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getAdditiveExpression()
    * @generated
    */
-  int ADDITIVE_EXPRESSION = 63;
+  int ADDITIVE_EXPRESSION = 65;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2667,7 +2741,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getMultiplicativeExpression()
    * @generated
    */
-  int MULTIPLICATIVE_EXPRESSION = 64;
+  int MULTIPLICATIVE_EXPRESSION = 66;
 
   /**
    * The feature id for the '<em><b>Operands</b></em>' containment reference list.
@@ -2704,7 +2778,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getNoArrayExpression()
    * @generated
    */
-  int NO_ARRAY_EXPRESSION = 66;
+  int NO_ARRAY_EXPRESSION = 68;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2741,7 +2815,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getNoArrayExpressionWithoutMinus()
    * @generated
    */
-  int NO_ARRAY_EXPRESSION_WITHOUT_MINUS = 69;
+  int NO_ARRAY_EXPRESSION_WITHOUT_MINUS = 71;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2778,7 +2852,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getCastExpression()
    * @generated
    */
-  int CAST_EXPRESSION = 65;
+  int CAST_EXPRESSION = 67;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2824,7 +2898,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getPreDecrementExpression()
    * @generated
    */
-  int PRE_DECREMENT_EXPRESSION = 67;
+  int PRE_DECREMENT_EXPRESSION = 69;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2861,7 +2935,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getPreIncrementExpression()
    * @generated
    */
-  int PRE_INCREMENT_EXPRESSION = 68;
+  int PRE_INCREMENT_EXPRESSION = 70;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2898,7 +2972,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getPostfixExpression()
    * @generated
    */
-  int POSTFIX_EXPRESSION = 70;
+  int POSTFIX_EXPRESSION = 72;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -2962,7 +3036,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getMethodInvocation()
    * @generated
    */
-  int METHOD_INVOCATION = 71;
+  int METHOD_INVOCATION = 73;
 
   /**
    * The feature id for the '<em><b>Method</b></em>' attribute.
@@ -3017,7 +3091,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getFieldAccess()
    * @generated
    */
-  int FIELD_ACCESS = 72;
+  int FIELD_ACCESS = 74;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference.
@@ -3063,7 +3137,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getPrimary()
    * @generated
    */
-  int PRIMARY = 73;
+  int PRIMARY = 75;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -3109,7 +3183,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getPrimaryNoNewArray()
    * @generated
    */
-  int PRIMARY_NO_NEW_ARRAY = 74;
+  int PRIMARY_NO_NEW_ARRAY = 76;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -3200,7 +3274,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getPrimaryNewArray()
    * @generated
    */
-  int PRIMARY_NEW_ARRAY = 75;
+  int PRIMARY_NEW_ARRAY = 77;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -3255,7 +3329,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getClassInstanceCreationExpression()
    * @generated
    */
-  int CLASS_INSTANCE_CREATION_EXPRESSION = 76;
+  int CLASS_INSTANCE_CREATION_EXPRESSION = 78;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3292,7 +3366,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getArgumentList()
    * @generated
    */
-  int ARGUMENT_LIST = 77;
+  int ARGUMENT_LIST = 79;
 
   /**
    * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
@@ -3320,7 +3394,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getArrayCreationExpression()
    * @generated
    */
-  int ARRAY_CREATION_EXPRESSION = 78;
+  int ARRAY_CREATION_EXPRESSION = 80;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3366,7 +3440,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getArrayExpression()
    * @generated
    */
-  int ARRAY_EXPRESSION = 79;
+  int ARRAY_EXPRESSION = 81;
 
   /**
    * The feature id for the '<em><b>Index</b></em>' containment reference.
@@ -3394,7 +3468,7 @@ public interface JavaDslPackage extends EPackage
    * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getArrayAccess()
    * @generated
    */
-  int ARRAY_ACCESS = 80;
+  int ARRAY_ACCESS = 82;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' attribute.
@@ -3743,6 +3817,17 @@ public interface JavaDslPackage extends EPackage
   EReference getClassMemberDeclaration_Field();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration#getMethod <em>Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Method</em>'.
+   * @see org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration#getMethod()
+   * @see #getClassMemberDeclaration()
+   * @generated
+   */
+  EReference getClassMemberDeclaration_Method();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl1.javaDsl.StaticInitializer <em>Static Initializer</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3860,15 +3945,15 @@ public interface JavaDslPackage extends EPackage
   EClass getFormalParameter();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.FormalParameter#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.FormalParameter#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.xtext.example.mydsl1.javaDsl.FormalParameter#getType()
    * @see #getFormalParameter()
    * @generated
    */
-  EAttribute getFormalParameter_Type();
+  EReference getFormalParameter_Type();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.FormalParameter#getVariable <em>Variable</em>}'.
@@ -3988,15 +4073,15 @@ public interface JavaDslPackage extends EPackage
   EAttribute getFieldDeclaration_Modifiers();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.FieldDeclaration#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.FieldDeclaration#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.xtext.example.mydsl1.javaDsl.FieldDeclaration#getType()
    * @see #getFieldDeclaration()
    * @generated
    */
-  EAttribute getFieldDeclaration_Type();
+  EReference getFieldDeclaration_Type();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl1.javaDsl.FieldDeclaration#getVariables <em>Variables</em>}'.
@@ -4052,6 +4137,17 @@ public interface JavaDslPackage extends EPackage
   EClass getVariableInitializer();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.VariableInitializer#getExp <em>Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exp</em>'.
+   * @see org.xtext.example.mydsl1.javaDsl.VariableInitializer#getExp()
+   * @see #getVariableInitializer()
+   * @generated
+   */
+  EReference getVariableInitializer_Exp();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl1.javaDsl.MethodDeclaration <em>Method Declaration</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4105,15 +4201,15 @@ public interface JavaDslPackage extends EPackage
   EAttribute getMethodHeader_Modifiers();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.MethodHeader#getReturnType <em>Return Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.MethodHeader#getReturnType <em>Return Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Return Type</em>'.
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
    * @see org.xtext.example.mydsl1.javaDsl.MethodHeader#getReturnType()
    * @see #getMethodHeader()
    * @generated
    */
-  EAttribute getMethodHeader_ReturnType();
+  EReference getMethodHeader_ReturnType();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.MethodHeader#getHeader <em>Header</em>}'.
@@ -4136,6 +4232,27 @@ public interface JavaDslPackage extends EPackage
    * @generated
    */
   EReference getMethodHeader_Throws();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl1.javaDsl.ResultType <em>Result Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Result Type</em>'.
+   * @see org.xtext.example.mydsl1.javaDsl.ResultType
+   * @generated
+   */
+  EClass getResultType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.ResultType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see org.xtext.example.mydsl1.javaDsl.ResultType#getType()
+   * @see #getResultType()
+   * @generated
+   */
+  EReference getResultType_Type();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl1.javaDsl.MethodDeclarator <em>Method Declarator</em>}'.
@@ -4308,15 +4425,15 @@ public interface JavaDslPackage extends EPackage
   EClass getConstantDeclaration();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.ConstantDeclaration#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.ConstantDeclaration#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.xtext.example.mydsl1.javaDsl.ConstantDeclaration#getType()
    * @see #getConstantDeclaration()
    * @generated
    */
-  EAttribute getConstantDeclaration_Type();
+  EReference getConstantDeclaration_Type();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.ConstantDeclaration#getConstant <em>Constant</em>}'.
@@ -4340,15 +4457,15 @@ public interface JavaDslPackage extends EPackage
   EClass getAbstractMethodDeclaration();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.AbstractMethodDeclaration#getReturnType <em>Return Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.AbstractMethodDeclaration#getReturnType <em>Return Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Return Type</em>'.
+   * @return the meta object for the containment reference '<em>Return Type</em>'.
    * @see org.xtext.example.mydsl1.javaDsl.AbstractMethodDeclaration#getReturnType()
    * @see #getAbstractMethodDeclaration()
    * @generated
    */
-  EAttribute getAbstractMethodDeclaration_ReturnType();
+  EReference getAbstractMethodDeclaration_ReturnType();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.AbstractMethodDeclaration#getHeader <em>Header</em>}'.
@@ -4394,6 +4511,27 @@ public interface JavaDslPackage extends EPackage
   EReference getArrayInitializer_Values();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl1.javaDsl.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type</em>'.
+   * @see org.xtext.example.mydsl1.javaDsl.Type
+   * @generated
+   */
+  EClass getType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.Type#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl1.javaDsl.Type#getName()
+   * @see #getType()
+   * @generated
+   */
+  EAttribute getType_Name();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl1.javaDsl.Block <em>Block</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4435,15 +4573,15 @@ public interface JavaDslPackage extends EPackage
   EClass getLocalVariableDeclaration();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl1.javaDsl.LocalVariableDeclaration#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl1.javaDsl.LocalVariableDeclaration#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.xtext.example.mydsl1.javaDsl.LocalVariableDeclaration#getType()
    * @see #getLocalVariableDeclaration()
    * @generated
    */
-  EAttribute getLocalVariableDeclaration_Type();
+  EReference getLocalVariableDeclaration_Type();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl1.javaDsl.LocalVariableDeclaration#getVariables <em>Variables</em>}'.
@@ -6180,6 +6318,14 @@ public interface JavaDslPackage extends EPackage
     EReference CLASS_MEMBER_DECLARATION__FIELD = eINSTANCE.getClassMemberDeclaration_Field();
 
     /**
+     * The meta object literal for the '<em><b>Method</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLASS_MEMBER_DECLARATION__METHOD = eINSTANCE.getClassMemberDeclaration_Method();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl1.javaDsl.impl.StaticInitializerImpl <em>Static Initializer</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6276,12 +6422,12 @@ public interface JavaDslPackage extends EPackage
     EClass FORMAL_PARAMETER = eINSTANCE.getFormalParameter();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FORMAL_PARAMETER__TYPE = eINSTANCE.getFormalParameter_Type();
+    EReference FORMAL_PARAMETER__TYPE = eINSTANCE.getFormalParameter_Type();
 
     /**
      * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
@@ -6380,12 +6526,12 @@ public interface JavaDslPackage extends EPackage
     EAttribute FIELD_DECLARATION__MODIFIERS = eINSTANCE.getFieldDeclaration_Modifiers();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FIELD_DECLARATION__TYPE = eINSTANCE.getFieldDeclaration_Type();
+    EReference FIELD_DECLARATION__TYPE = eINSTANCE.getFieldDeclaration_Type();
 
     /**
      * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
@@ -6432,6 +6578,14 @@ public interface JavaDslPackage extends EPackage
     EClass VARIABLE_INITIALIZER = eINSTANCE.getVariableInitializer();
 
     /**
+     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VARIABLE_INITIALIZER__EXP = eINSTANCE.getVariableInitializer_Exp();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl1.javaDsl.impl.MethodDeclarationImpl <em>Method Declaration</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6476,12 +6630,12 @@ public interface JavaDslPackage extends EPackage
     EAttribute METHOD_HEADER__MODIFIERS = eINSTANCE.getMethodHeader_Modifiers();
 
     /**
-     * The meta object literal for the '<em><b>Return Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute METHOD_HEADER__RETURN_TYPE = eINSTANCE.getMethodHeader_ReturnType();
+    EReference METHOD_HEADER__RETURN_TYPE = eINSTANCE.getMethodHeader_ReturnType();
 
     /**
      * The meta object literal for the '<em><b>Header</b></em>' containment reference feature.
@@ -6498,6 +6652,24 @@ public interface JavaDslPackage extends EPackage
      * @generated
      */
     EReference METHOD_HEADER__THROWS = eINSTANCE.getMethodHeader_Throws();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl1.javaDsl.impl.ResultTypeImpl <em>Result Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl1.javaDsl.impl.ResultTypeImpl
+     * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getResultType()
+     * @generated
+     */
+    EClass RESULT_TYPE = eINSTANCE.getResultType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RESULT_TYPE__TYPE = eINSTANCE.getResultType_Type();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl1.javaDsl.impl.MethodDeclaratorImpl <em>Method Declarator</em>}' class.
@@ -6640,12 +6812,12 @@ public interface JavaDslPackage extends EPackage
     EClass CONSTANT_DECLARATION = eINSTANCE.getConstantDeclaration();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONSTANT_DECLARATION__TYPE = eINSTANCE.getConstantDeclaration_Type();
+    EReference CONSTANT_DECLARATION__TYPE = eINSTANCE.getConstantDeclaration_Type();
 
     /**
      * The meta object literal for the '<em><b>Constant</b></em>' containment reference feature.
@@ -6666,12 +6838,12 @@ public interface JavaDslPackage extends EPackage
     EClass ABSTRACT_METHOD_DECLARATION = eINSTANCE.getAbstractMethodDeclaration();
 
     /**
-     * The meta object literal for the '<em><b>Return Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ABSTRACT_METHOD_DECLARATION__RETURN_TYPE = eINSTANCE.getAbstractMethodDeclaration_ReturnType();
+    EReference ABSTRACT_METHOD_DECLARATION__RETURN_TYPE = eINSTANCE.getAbstractMethodDeclaration_ReturnType();
 
     /**
      * The meta object literal for the '<em><b>Header</b></em>' containment reference feature.
@@ -6706,6 +6878,24 @@ public interface JavaDslPackage extends EPackage
      * @generated
      */
     EReference ARRAY_INITIALIZER__VALUES = eINSTANCE.getArrayInitializer_Values();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl1.javaDsl.impl.TypeImpl <em>Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl1.javaDsl.impl.TypeImpl
+     * @see org.xtext.example.mydsl1.javaDsl.impl.JavaDslPackageImpl#getType()
+     * @generated
+     */
+    EClass TYPE = eINSTANCE.getType();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TYPE__NAME = eINSTANCE.getType_Name();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl1.javaDsl.impl.BlockImpl <em>Block</em>}' class.
@@ -6746,12 +6936,12 @@ public interface JavaDslPackage extends EPackage
     EClass LOCAL_VARIABLE_DECLARATION = eINSTANCE.getLocalVariableDeclaration();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute LOCAL_VARIABLE_DECLARATION__TYPE = eINSTANCE.getLocalVariableDeclaration_Type();
+    EReference LOCAL_VARIABLE_DECLARATION__TYPE = eINSTANCE.getLocalVariableDeclaration_Type();
 
     /**
      * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.

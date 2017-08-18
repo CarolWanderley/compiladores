@@ -87,6 +87,7 @@ public class JavaDslFactoryImpl extends EFactoryImpl implements JavaDslFactory
       case JavaDslPackage.VARIABLE_INITIALIZER: return createVariableInitializer();
       case JavaDslPackage.METHOD_DECLARATION: return createMethodDeclaration();
       case JavaDslPackage.METHOD_HEADER: return createMethodHeader();
+      case JavaDslPackage.RESULT_TYPE: return createResultType();
       case JavaDslPackage.METHOD_DECLARATOR: return createMethodDeclarator();
       case JavaDslPackage.INTERFACE_DECLARATION: return createInterfaceDeclaration();
       case JavaDslPackage.EXTENDS_INTERFACES: return createExtendsInterfaces();
@@ -95,6 +96,7 @@ public class JavaDslFactoryImpl extends EFactoryImpl implements JavaDslFactory
       case JavaDslPackage.CONSTANT_DECLARATION: return createConstantDeclaration();
       case JavaDslPackage.ABSTRACT_METHOD_DECLARATION: return createAbstractMethodDeclaration();
       case JavaDslPackage.ARRAY_INITIALIZER: return createArrayInitializer();
+      case JavaDslPackage.TYPE: return createType();
       case JavaDslPackage.BLOCK: return createBlock();
       case JavaDslPackage.BLOCK_STATEMENT: return createBlockStatement();
       case JavaDslPackage.LOCAL_VARIABLE_DECLARATION: return createLocalVariableDeclaration();
@@ -398,6 +400,17 @@ public class JavaDslFactoryImpl extends EFactoryImpl implements JavaDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ResultType createResultType()
+  {
+    ResultTypeImpl resultType = new ResultTypeImpl();
+    return resultType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public MethodDeclarator createMethodDeclarator()
   {
     MethodDeclaratorImpl methodDeclarator = new MethodDeclaratorImpl();
@@ -479,6 +492,17 @@ public class JavaDslFactoryImpl extends EFactoryImpl implements JavaDslFactory
   {
     ArrayInitializerImpl arrayInitializer = new ArrayInitializerImpl();
     return arrayInitializer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Type createType()
+  {
+    TypeImpl type = new TypeImpl();
+    return type;
   }
 
   /**

@@ -45,30 +45,30 @@ public interface MethodHeader extends EObject
   EList<String> getModifiers();
 
   /**
-   * Returns the value of the '<em><b>Return Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Return Type</em>' attribute isn't clear,
+   * If the meaning of the '<em>Return Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Return Type</em>' attribute.
-   * @see #setReturnType(String)
+   * @return the value of the '<em>Return Type</em>' containment reference.
+   * @see #setReturnType(ResultType)
    * @see org.xtext.example.mydsl1.javaDsl.JavaDslPackage#getMethodHeader_ReturnType()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getReturnType();
+  ResultType getReturnType();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl1.javaDsl.MethodHeader#getReturnType <em>Return Type</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl1.javaDsl.MethodHeader#getReturnType <em>Return Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Return Type</em>' attribute.
+   * @param value the new value of the '<em>Return Type</em>' containment reference.
    * @see #getReturnType()
    * @generated
    */
-  void setReturnType(String value);
+  void setReturnType(ResultType value);
 
   /**
    * Returns the value of the '<em><b>Header</b></em>' containment reference.

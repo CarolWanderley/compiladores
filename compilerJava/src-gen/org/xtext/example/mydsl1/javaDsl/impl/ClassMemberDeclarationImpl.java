@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration;
 import org.xtext.example.mydsl1.javaDsl.FieldDeclaration;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
+import org.xtext.example.mydsl1.javaDsl.MethodDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +26,7 @@ import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl1.javaDsl.impl.ClassMemberDeclarationImpl#getField <em>Field</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl1.javaDsl.impl.ClassMemberDeclarationImpl#getMethod <em>Method</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,6 +42,16 @@ public class ClassMemberDeclarationImpl extends MinimalEObjectImpl.Container imp
    * @ordered
    */
   protected FieldDeclaration field;
+
+  /**
+   * The cached value of the '{@link #getMethod() <em>Method</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMethod()
+   * @generated
+   * @ordered
+   */
+  protected MethodDeclaration method;
 
   /**
    * <!-- begin-user-doc -->
@@ -115,6 +127,54 @@ public class ClassMemberDeclarationImpl extends MinimalEObjectImpl.Container imp
    * <!-- end-user-doc -->
    * @generated
    */
+  public MethodDeclaration getMethod()
+  {
+    return method;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetMethod(MethodDeclaration newMethod, NotificationChain msgs)
+  {
+    MethodDeclaration oldMethod = method;
+    method = newMethod;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD, oldMethod, newMethod);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMethod(MethodDeclaration newMethod)
+  {
+    if (newMethod != method)
+    {
+      NotificationChain msgs = null;
+      if (method != null)
+        msgs = ((InternalEObject)method).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD, null, msgs);
+      if (newMethod != null)
+        msgs = ((InternalEObject)newMethod).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD, null, msgs);
+      msgs = basicSetMethod(newMethod, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD, newMethod, newMethod));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -122,6 +182,8 @@ public class ClassMemberDeclarationImpl extends MinimalEObjectImpl.Container imp
     {
       case JavaDslPackage.CLASS_MEMBER_DECLARATION__FIELD:
         return basicSetField(null, msgs);
+      case JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD:
+        return basicSetMethod(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -138,6 +200,8 @@ public class ClassMemberDeclarationImpl extends MinimalEObjectImpl.Container imp
     {
       case JavaDslPackage.CLASS_MEMBER_DECLARATION__FIELD:
         return getField();
+      case JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD:
+        return getMethod();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,6 +218,9 @@ public class ClassMemberDeclarationImpl extends MinimalEObjectImpl.Container imp
     {
       case JavaDslPackage.CLASS_MEMBER_DECLARATION__FIELD:
         setField((FieldDeclaration)newValue);
+        return;
+      case JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD:
+        setMethod((MethodDeclaration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -172,6 +239,9 @@ public class ClassMemberDeclarationImpl extends MinimalEObjectImpl.Container imp
       case JavaDslPackage.CLASS_MEMBER_DECLARATION__FIELD:
         setField((FieldDeclaration)null);
         return;
+      case JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD:
+        setMethod((MethodDeclaration)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -188,6 +258,8 @@ public class ClassMemberDeclarationImpl extends MinimalEObjectImpl.Container imp
     {
       case JavaDslPackage.CLASS_MEMBER_DECLARATION__FIELD:
         return field != null;
+      case JavaDslPackage.CLASS_MEMBER_DECLARATION__METHOD:
+        return method != null;
     }
     return super.eIsSet(featureID);
   }

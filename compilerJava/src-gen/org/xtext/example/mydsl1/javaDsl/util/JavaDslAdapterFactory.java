@@ -186,6 +186,11 @@ public class JavaDslAdapterFactory extends AdapterFactoryImpl
         return createMethodHeaderAdapter();
       }
       @Override
+      public Adapter caseResultType(ResultType object)
+      {
+        return createResultTypeAdapter();
+      }
+      @Override
       public Adapter caseMethodDeclarator(MethodDeclarator object)
       {
         return createMethodDeclaratorAdapter();
@@ -224,6 +229,11 @@ public class JavaDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseArrayInitializer(ArrayInitializer object)
       {
         return createArrayInitializerAdapter();
+      }
+      @Override
+      public Adapter caseType(Type object)
+      {
+        return createTypeAdapter();
       }
       @Override
       public Adapter caseBlock(Block object)
@@ -833,6 +843,21 @@ public class JavaDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl1.javaDsl.ResultType <em>Result Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl1.javaDsl.ResultType
+   * @generated
+   */
+  public Adapter createResultTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl1.javaDsl.MethodDeclarator <em>Method Declarator</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -948,6 +973,21 @@ public class JavaDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createArrayInitializerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl1.javaDsl.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl1.javaDsl.Type
+   * @generated
+   */
+  public Adapter createTypeAdapter()
   {
     return null;
   }

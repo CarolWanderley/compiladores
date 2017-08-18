@@ -15,15 +15,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.example.mydsl1.javaDsl.impl,
- org.xtext.example.mydsl1.serializer,
- org.xtext.example.mydsl1.scoping,
+Export-Package: org.xtext.example.mydsl1,
  org.xtext.example.mydsl1.generator,
- org.xtext.example.mydsl1.parser.antlr,
- org.xtext.example.mydsl1.validation,
- org.xtext.example.mydsl1.services,
- org.xtext.example.mydsl1,
+ org.xtext.example.mydsl1.javaDsl,
+ org.xtext.example.mydsl1.javaDsl.impl,
  org.xtext.example.mydsl1.javaDsl.util,
+ org.xtext.example.mydsl1.parser.antlr,
  org.xtext.example.mydsl1.parser.antlr.internal,
- org.xtext.example.mydsl1.javaDsl
+ org.xtext.example.mydsl1.scoping,
+ org.xtext.example.mydsl1.serializer,
+ org.xtext.example.mydsl1.services,
+ org.xtext.example.mydsl1.validation
 Import-Package: org.apache.log4j

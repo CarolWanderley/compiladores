@@ -21,5 +21,7 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.xtext.example.mydsl1.ui.quickfix,
  org.xtext.example.mydsl1.ui.contentassist,
- compilerJava.ui.internal
+ compilerJava.ui.internal,
+ compiladores.ufcg.edu.br.ui.quickfix,
+ compiladores.ufcg.edu.br.ui.contentassist
 Bundle-Activator: compilerJava.ui.internal.CompilerJavaActivator

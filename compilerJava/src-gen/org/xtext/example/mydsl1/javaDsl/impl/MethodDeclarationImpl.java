@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl1.javaDsl.Block;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
@@ -30,7 +31,7 @@ import org.xtext.example.mydsl1.javaDsl.MethodHeader;
  *
  * @generated
  */
-public class MethodDeclarationImpl extends ClassMemberDeclarationImpl implements MethodDeclaration
+public class MethodDeclarationImpl extends MinimalEObjectImpl.Container implements MethodDeclaration
 {
   /**
    * The cached value of the '{@link #getSignature() <em>Signature</em>}' containment reference.

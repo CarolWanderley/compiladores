@@ -4,14 +4,17 @@
 package org.xtext.example.mydsl1.javaDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl1.javaDsl.FormalParameter;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
+import org.xtext.example.mydsl1.javaDsl.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,24 +33,14 @@ import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
 public class FormalParameterImpl extends MinimalEObjectImpl.Container implements FormalParameter
 {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected Type type;
 
   /**
    * The default value of the '{@link #getVariable() <em>Variable</em>}' attribute.
@@ -95,7 +88,7 @@ public class FormalParameterImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getType()
+  public Type getType()
   {
     return type;
   }
@@ -105,12 +98,37 @@ public class FormalParameterImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(String newType)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    String oldType = type;
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.FORMAL_PARAMETER__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JavaDslPackage.FORMAL_PARAMETER__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(Type newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.FORMAL_PARAMETER__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.FORMAL_PARAMETER__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.FORMAL_PARAMETER__TYPE, newType, newType));
   }
 
   /**
@@ -142,6 +160,22 @@ public class FormalParameterImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case JavaDslPackage.FORMAL_PARAMETER__TYPE:
+        return basicSetType(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -165,7 +199,7 @@ public class FormalParameterImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case JavaDslPackage.FORMAL_PARAMETER__TYPE:
-        setType((String)newValue);
+        setType((Type)newValue);
         return;
       case JavaDslPackage.FORMAL_PARAMETER__VARIABLE:
         setVariable((String)newValue);
@@ -185,7 +219,7 @@ public class FormalParameterImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case JavaDslPackage.FORMAL_PARAMETER__TYPE:
-        setType(TYPE_EDEFAULT);
+        setType((Type)null);
         return;
       case JavaDslPackage.FORMAL_PARAMETER__VARIABLE:
         setVariable(VARIABLE_EDEFAULT);
@@ -205,7 +239,7 @@ public class FormalParameterImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case JavaDslPackage.FORMAL_PARAMETER__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        return type != null;
       case JavaDslPackage.FORMAL_PARAMETER__VARIABLE:
         return VARIABLE_EDEFAULT == null ? variable != null : !VARIABLE_EDEFAULT.equals(variable);
     }
@@ -223,9 +257,7 @@ public class FormalParameterImpl extends MinimalEObjectImpl.Container implements
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (type: ");
-    result.append(type);
-    result.append(", variable: ");
+    result.append(" (variable: ");
     result.append(variable);
     result.append(')');
     return result.toString();

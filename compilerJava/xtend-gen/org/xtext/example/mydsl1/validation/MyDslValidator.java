@@ -9,16 +9,23 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.xtext.example.mydsl1.exception.ValidationException;
+import org.xtext.example.mydsl1.javaDsl.ClassBodyDeclaration;
 import org.xtext.example.mydsl1.javaDsl.ClassDeclaration;
+import org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration;
 import org.xtext.example.mydsl1.javaDsl.CompilationUnit;
 import org.xtext.example.mydsl1.javaDsl.FieldDeclaration;
+import org.xtext.example.mydsl1.javaDsl.IfStatement;
 import org.xtext.example.mydsl1.javaDsl.InterfaceDeclaration;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
+import org.xtext.example.mydsl1.javaDsl.MethodDeclaration;
 import org.xtext.example.mydsl1.javaDsl.TypeDeclaration;
 import org.xtext.example.mydsl1.javaDsl.VariableDeclarator;
 import org.xtext.example.mydsl1.validation.AbstractMyDslValidator;
+import org.xtext.example.mydsl1.validation.utils.ClassAttributeValidator;
 import org.xtext.example.mydsl1.validation.utils.ClassValidator;
 import org.xtext.example.mydsl1.validation.utils.ExtendsValidator;
+import org.xtext.example.mydsl1.validation.utils.IfThenElseValidator;
 import org.xtext.example.mydsl1.validation.utils.ValidatorRepository;
 
 /**
@@ -32,24 +39,31 @@ public class MyDslValidator extends AbstractMyDslValidator {
   
   @Check
   public void validateCompilation(final CompilationUnit cmu) {
-    try {
-      ValidatorRepository _validatorRepository = new ValidatorRepository();
-      this.validator = _validatorRepository;
-      EList<TypeDeclaration> _typeDeclarations = cmu.getTypeDeclarations();
-      for (final TypeDeclaration td : _typeDeclarations) {
-        this.mapAndValidateClasses(td);
-      }
-      EList<TypeDeclaration> _typeDeclarations_1 = cmu.getTypeDeclarations();
-      for (final TypeDeclaration td_1 : _typeDeclarations_1) {
-        if (((td_1.getName() != null) && (td_1.getName() instanceof ClassDeclaration))) {
-          ExtendsValidator extendsValidator = new ExtendsValidator(this.validator);
-          EObject _name = td_1.getName();
-          ClassDeclaration cd = ((ClassDeclaration) _name);
+    ValidatorRepository _validatorRepository = new ValidatorRepository();
+    this.validator = _validatorRepository;
+    EList<TypeDeclaration> _typeDeclarations = cmu.getTypeDeclarations();
+    for (final TypeDeclaration td : _typeDeclarations) {
+      this.mapAndValidateClasses(td);
+    }
+    EList<TypeDeclaration> _typeDeclarations_1 = cmu.getTypeDeclarations();
+    for (final TypeDeclaration td_1 : _typeDeclarations_1) {
+      if (((td_1.getName() != null) && (td_1.getName() instanceof ClassDeclaration))) {
+        ExtendsValidator extendsValidator = new ExtendsValidator(this.validator);
+        EObject _name = td_1.getName();
+        ClassDeclaration cd = ((ClassDeclaration) _name);
+        try {
           extendsValidator.validate(cd);
+        } catch (final Throwable _t) {
+          if (_t instanceof ValidationException) {
+            final ValidationException e = (ValidationException)_t;
+            this.error(e.getMessage(), cd, JavaDslPackage.Literals.CLASS_DECLARATION__CLASS_NAME);
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
         }
+        this.mapAndValidateAttributes(cd);
+        this.validateMethods(cd);
       }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
     }
   }
   
@@ -88,39 +102,108 @@ public class MyDslValidator extends AbstractMyDslValidator {
   }
   
   public void mapAndValidateAttributes(final ClassDeclaration cd) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method validateAttributeWithExpression(FieldDeclaration, VariableDeclarator, String) is undefined");
+    try {
+      EList<ClassBodyDeclaration> _declarations = cd.getBody().getDeclarations();
+      for (final ClassBodyDeclaration cbd : _declarations) {
+        if (((cbd.getMember() != null) && (cbd.getMember() instanceof ClassMemberDeclaration))) {
+          ClassMemberDeclaration _member = cbd.getMember();
+          ClassMemberDeclaration cmd = ((ClassMemberDeclaration) _member);
+          if (((cmd.getField() != null) && (cmd.getField() instanceof FieldDeclaration))) {
+            FieldDeclaration _field = cmd.getField();
+            FieldDeclaration fd = ((FieldDeclaration) _field);
+            ClassAttributeValidator cav = new ClassAttributeValidator(this.validator);
+            cav.validate(cd, fd);
+            this.validator.classAttributes.get(cd.getClassName()).add(fd);
+          }
+        }
+      }
+      List<FieldDeclaration> _get = this.validator.classAttributes.get(cd.getClassName());
+      for (final FieldDeclaration fd_1 : _get) {
+        EList<VariableDeclarator> _variables = fd_1.getVariables();
+        boolean _tripleNotEquals = (_variables != null);
+        if (_tripleNotEquals) {
+          EList<VariableDeclarator> _variables_1 = fd_1.getVariables();
+          for (final VariableDeclarator vd : _variables_1) {
+          }
+        }
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof ValidationException) {
+        final ValidationException e = (ValidationException)_t;
+        if ((e.argA instanceof FieldDeclaration)) {
+          FieldDeclaration fd_2 = ((FieldDeclaration) e.argA);
+          this.error(e.getMessage(), fd_2, JavaDslPackage.Literals.FIELD_DECLARATION__TYPE);
+        } else {
+          if ((e.argA instanceof VariableDeclarator)) {
+            VariableDeclarator vd_1 = ((VariableDeclarator) e.argA);
+            this.error(e.getMessage(), vd_1, JavaDslPackage.Literals.VARIABLE_DECLARATOR__NAME);
+          }
+        }
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
   
-  public void validateClassAttributes(final ClassDeclaration cd, final FieldDeclaration fd) {
-    if (((this.validator.classAttributes.get(fd.getType()) == null) && (!this.isPrimitive(fd.getType())))) {
-      String _type = fd.getType();
-      String _plus = ("This object " + _type);
-      String _plus_1 = (_plus + " does not exist");
-      this.error(_plus_1, fd, JavaDslPackage.Literals.FIELD_DECLARATION__TYPE);
-    }
-    List<String> variableNames = new ArrayList<String>();
-    EList<VariableDeclarator> _variables = fd.getVariables();
-    boolean _tripleNotEquals = (_variables != null);
-    if (_tripleNotEquals) {
-      EList<VariableDeclarator> _variables_1 = fd.getVariables();
-      for (final VariableDeclarator vd : _variables_1) {
-        {
-          if ((this.validator.hasClassAttribute(cd, vd.getName()) || variableNames.contains(vd.getName()))) {
-            String _name = vd.getName();
-            String _plus_2 = ("Field " + _name);
-            String _plus_3 = (_plus_2 + " duplicated.");
-            this.error(_plus_3, vd, JavaDslPackage.Literals.VARIABLE_DECLARATOR__NAME);
+  public void validateMethods(final ClassDeclaration cd) {
+    List<String> methods = new ArrayList<String>();
+    EList<ClassBodyDeclaration> _declarations = cd.getBody().getDeclarations();
+    for (final ClassBodyDeclaration cbd : _declarations) {
+      {
+        ClassMemberDeclaration cmd = cbd.getMember();
+        MethodDeclaration md = cmd.getMethod();
+        if ((md != null)) {
+          boolean _contains = methods.contains(md.getSignature().getHeader().getName());
+          if (_contains) {
+            String _name = md.getSignature().getHeader().getName();
+            String _plus = ("Method " + _name);
+            String _plus_1 = (_plus + " already exists.");
+            this.error(_plus_1, md, JavaDslPackage.Literals.METHOD_DECLARATION__SIGNATURE);
           }
-          variableNames.add(vd.getName());
+          methods.add(md.getSignature().getHeader().getName());
+          this.validator.classMethods.get(cd.getClassName()).add(md);
+          ClassValidator cv = new ClassValidator(this.validator);
+          try {
+            cv.validateMethod(md);
+          } catch (final Throwable _t) {
+            if (_t instanceof Exception) {
+              final Exception e = (Exception)_t;
+              this.error(e.getMessage(), md, JavaDslPackage.Literals.METHOD_DECLARATION__SIGNATURE);
+            } else {
+              throw Exceptions.sneakyThrow(_t);
+            }
+          }
         }
       }
     }
   }
   
-  public boolean isPrimitive(final String type) {
-    return ((((((((type.equals("int") || type.equals("boolean")) || type.equals("byte")) || type.equals("char")) || 
-      type.equals("short")) || type.equals("float")) || type.equals("double")) || type.equals("long")) || 
-      type.equals("void"));
+  @Check
+  public void validateIfStatement(final IfStatement ifs) {
+    System.out.println("AQUI OH");
+    IfThenElseValidator ift = new IfThenElseValidator(this.validator);
+    try {
+      ift.validate(ifs);
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        this.error(e.getMessage(), ifs, JavaDslPackage.Literals.IF_STATEMENT__CONDITION);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
+  public boolean hasMethod(final String className, final MethodDeclaration md) {
+    List<MethodDeclaration> _get = this.validator.classMethods.get(className);
+    for (final MethodDeclaration mdAux : _get) {
+      String _name = mdAux.getSignature().getHeader().getName();
+      String _name_1 = md.getSignature().getHeader().getName();
+      boolean _tripleEquals = (_name == _name_1);
+      if (_tripleEquals) {
+        return true;
+      }
+    }
+    return false;
   }
 }

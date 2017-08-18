@@ -46,7 +46,7 @@ ClassBodyDeclaration:
 ;
 
 ClassMemberDeclaration:
-	field=FieldDeclaration | MethodDeclaration
+	(field=FieldDeclaration | method=MethodDeclaration)
 ;
 
 StaticInitializer:
@@ -103,7 +103,7 @@ VariableDeclaratorId:
 ;
 
 VariableInitializer:
-	Expression | ArrayInitializer
+	(exp=Expression | ArrayInitializer)
 ;
 
 MethodDeclaration:
@@ -116,7 +116,7 @@ MethodHeader:
 ;
 
 ResultType:
-	Type | VOID
+	(type=Type | VOID)
 ;
 
 MethodModifier:

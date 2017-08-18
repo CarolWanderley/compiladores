@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl1.javaDsl.FieldDeclaration;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
+import org.xtext.example.mydsl1.javaDsl.Type;
 import org.xtext.example.mydsl1.javaDsl.VariableDeclarator;
 
 /**
@@ -52,24 +53,14 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
   protected EList<String> modifiers;
 
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected Type type;
 
   /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
@@ -121,7 +112,7 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getType()
+  public Type getType()
   {
     return type;
   }
@@ -131,12 +122,37 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(String newType)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    String oldType = type;
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.FIELD_DECLARATION__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JavaDslPackage.FIELD_DECLARATION__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(Type newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.FIELD_DECLARATION__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.FIELD_DECLARATION__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.FIELD_DECLARATION__TYPE, newType, newType));
   }
 
   /**
@@ -163,6 +179,8 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
+      case JavaDslPackage.FIELD_DECLARATION__TYPE:
+        return basicSetType(null, msgs);
       case JavaDslPackage.FIELD_DECLARATION__VARIABLES:
         return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
     }
@@ -205,7 +223,7 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
         getModifiers().addAll((Collection<? extends String>)newValue);
         return;
       case JavaDslPackage.FIELD_DECLARATION__TYPE:
-        setType((String)newValue);
+        setType((Type)newValue);
         return;
       case JavaDslPackage.FIELD_DECLARATION__VARIABLES:
         getVariables().clear();
@@ -229,7 +247,7 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
         getModifiers().clear();
         return;
       case JavaDslPackage.FIELD_DECLARATION__TYPE:
-        setType(TYPE_EDEFAULT);
+        setType((Type)null);
         return;
       case JavaDslPackage.FIELD_DECLARATION__VARIABLES:
         getVariables().clear();
@@ -251,7 +269,7 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
       case JavaDslPackage.FIELD_DECLARATION__MODIFIERS:
         return modifiers != null && !modifiers.isEmpty();
       case JavaDslPackage.FIELD_DECLARATION__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        return type != null;
       case JavaDslPackage.FIELD_DECLARATION__VARIABLES:
         return variables != null && !variables.isEmpty();
     }
@@ -271,8 +289,6 @@ public class FieldDeclarationImpl extends MinimalEObjectImpl.Container implement
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (modifiers: ");
     result.append(modifiers);
-    result.append(", type: ");
-    result.append(type);
     result.append(')');
     return result.toString();
   }

@@ -22,6 +22,7 @@ import org.xtext.example.mydsl1.javaDsl.Exceptions;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
 import org.xtext.example.mydsl1.javaDsl.MethodDeclarator;
 import org.xtext.example.mydsl1.javaDsl.MethodHeader;
+import org.xtext.example.mydsl1.javaDsl.ResultType;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,24 +53,14 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
   protected EList<String> modifiers;
 
   /**
-   * The default value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
+   * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getReturnType()
    * @generated
    * @ordered
    */
-  protected static final String RETURN_TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReturnType()
-   * @generated
-   * @ordered
-   */
-  protected String returnType = RETURN_TYPE_EDEFAULT;
+  protected ResultType returnType;
 
   /**
    * The cached value of the '{@link #getHeader() <em>Header</em>}' containment reference.
@@ -131,7 +122,7 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getReturnType()
+  public ResultType getReturnType()
   {
     return returnType;
   }
@@ -141,12 +132,37 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setReturnType(String newReturnType)
+  public NotificationChain basicSetReturnType(ResultType newReturnType, NotificationChain msgs)
   {
-    String oldReturnType = returnType;
+    ResultType oldReturnType = returnType;
     returnType = newReturnType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.METHOD_HEADER__RETURN_TYPE, oldReturnType, returnType));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JavaDslPackage.METHOD_HEADER__RETURN_TYPE, oldReturnType, newReturnType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReturnType(ResultType newReturnType)
+  {
+    if (newReturnType != returnType)
+    {
+      NotificationChain msgs = null;
+      if (returnType != null)
+        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.METHOD_HEADER__RETURN_TYPE, null, msgs);
+      if (newReturnType != null)
+        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.METHOD_HEADER__RETURN_TYPE, null, msgs);
+      msgs = basicSetReturnType(newReturnType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.METHOD_HEADER__RETURN_TYPE, newReturnType, newReturnType));
   }
 
   /**
@@ -255,6 +271,8 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
   {
     switch (featureID)
     {
+      case JavaDslPackage.METHOD_HEADER__RETURN_TYPE:
+        return basicSetReturnType(null, msgs);
       case JavaDslPackage.METHOD_HEADER__HEADER:
         return basicSetHeader(null, msgs);
       case JavaDslPackage.METHOD_HEADER__THROWS:
@@ -301,7 +319,7 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
         getModifiers().addAll((Collection<? extends String>)newValue);
         return;
       case JavaDslPackage.METHOD_HEADER__RETURN_TYPE:
-        setReturnType((String)newValue);
+        setReturnType((ResultType)newValue);
         return;
       case JavaDslPackage.METHOD_HEADER__HEADER:
         setHeader((MethodDeclarator)newValue);
@@ -327,7 +345,7 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
         getModifiers().clear();
         return;
       case JavaDslPackage.METHOD_HEADER__RETURN_TYPE:
-        setReturnType(RETURN_TYPE_EDEFAULT);
+        setReturnType((ResultType)null);
         return;
       case JavaDslPackage.METHOD_HEADER__HEADER:
         setHeader((MethodDeclarator)null);
@@ -352,7 +370,7 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
       case JavaDslPackage.METHOD_HEADER__MODIFIERS:
         return modifiers != null && !modifiers.isEmpty();
       case JavaDslPackage.METHOD_HEADER__RETURN_TYPE:
-        return RETURN_TYPE_EDEFAULT == null ? returnType != null : !RETURN_TYPE_EDEFAULT.equals(returnType);
+        return returnType != null;
       case JavaDslPackage.METHOD_HEADER__HEADER:
         return header != null;
       case JavaDslPackage.METHOD_HEADER__THROWS:
@@ -374,8 +392,6 @@ public class MethodHeaderImpl extends MinimalEObjectImpl.Container implements Me
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (modifiers: ");
     result.append(modifiers);
-    result.append(", returnType: ");
-    result.append(returnType);
     result.append(')');
     return result.toString();
   }

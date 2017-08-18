@@ -24,30 +24,30 @@ package org.xtext.example.mydsl1.javaDsl;
 public interface ConstantDeclaration extends InterfaceMemberDeclaration
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' attribute isn't clear,
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' attribute.
-   * @see #setType(String)
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(Type)
    * @see org.xtext.example.mydsl1.javaDsl.JavaDslPackage#getConstantDeclaration_Type()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getType();
+  Type getType();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl1.javaDsl.ConstantDeclaration#getType <em>Type</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl1.javaDsl.ConstantDeclaration#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' attribute.
+   * @param value the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */
-  void setType(String value);
+  void setType(Type value);
 
   /**
    * Returns the value of the '<em><b>Constant</b></em>' containment reference.

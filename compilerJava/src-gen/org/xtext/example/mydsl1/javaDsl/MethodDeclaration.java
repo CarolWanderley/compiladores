@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl1.javaDsl;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ package org.xtext.example.mydsl1.javaDsl;
  * @model
  * @generated
  */
-public interface MethodDeclaration extends ClassMemberDeclaration
+public interface MethodDeclaration extends EObject
 {
   /**
    * Returns the value of the '<em><b>Signature</b></em>' containment reference.

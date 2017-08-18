@@ -76,6 +76,7 @@ import org.xtext.example.mydsl1.javaDsl.PreIncrementExpression;
 import org.xtext.example.mydsl1.javaDsl.PrimaryNewArray;
 import org.xtext.example.mydsl1.javaDsl.PrimaryNoNewArray;
 import org.xtext.example.mydsl1.javaDsl.RelationalExpression;
+import org.xtext.example.mydsl1.javaDsl.ResultType;
 import org.xtext.example.mydsl1.javaDsl.ReturnStatement;
 import org.xtext.example.mydsl1.javaDsl.ShiftExpression;
 import org.xtext.example.mydsl1.javaDsl.StaticInitializer;
@@ -83,8 +84,10 @@ import org.xtext.example.mydsl1.javaDsl.SwitchStatement;
 import org.xtext.example.mydsl1.javaDsl.SynchronizedStatement;
 import org.xtext.example.mydsl1.javaDsl.ThrowsStatement;
 import org.xtext.example.mydsl1.javaDsl.TryStatement;
+import org.xtext.example.mydsl1.javaDsl.Type;
 import org.xtext.example.mydsl1.javaDsl.TypeDeclaration;
 import org.xtext.example.mydsl1.javaDsl.VariableDeclarator;
+import org.xtext.example.mydsl1.javaDsl.VariableInitializer;
 import org.xtext.example.mydsl1.javaDsl.WhileStatement;
 import org.xtext.example.mydsl1.services.MyDslGrammarAccess;
 
@@ -127,8 +130,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_ArrayInitializer(context, (ArrayInitializer) semanticObject); 
 				return; 
 			case JavaDslPackage.ASSIGNMENT:
-				if (rule == grammarAccess.getVariableInitializerRule()
-						|| rule == grammarAccess.getBlockStatementRule()
+				if (rule == grammarAccess.getBlockStatementRule()
 						|| rule == grammarAccess.getStatementRule()
 						|| rule == grammarAccess.getStatementExpressionRule()
 						|| rule == grammarAccess.getConstantExpressionRule()
@@ -175,8 +177,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_ConditionalAndExpression(context, (ConditionalAndExpression) semanticObject); 
 				return; 
 			case JavaDslPackage.CONDITIONAL_EXPRESSION:
-				if (rule == grammarAccess.getVariableInitializerRule()
-						|| rule == grammarAccess.getConstantExpressionRule()
+				if (rule == grammarAccess.getConstantExpressionRule()
 						|| rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getAssignmentExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()) {
@@ -312,6 +313,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case JavaDslPackage.RELATIONAL_EXPRESSION:
 				sequence_RelationalExpression(context, (RelationalExpression) semanticObject); 
 				return; 
+			case JavaDslPackage.RESULT_TYPE:
+				sequence_ResultType(context, (ResultType) semanticObject); 
+				return; 
 			case JavaDslPackage.RETURN_STATEMENT:
 				sequence_ReturnStatement(context, (ReturnStatement) semanticObject); 
 				return; 
@@ -333,11 +337,17 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case JavaDslPackage.TRY_STATEMENT:
 				sequence_TryStatement(context, (TryStatement) semanticObject); 
 				return; 
+			case JavaDslPackage.TYPE:
+				sequence_Type(context, (Type) semanticObject); 
+				return; 
 			case JavaDslPackage.TYPE_DECLARATION:
 				sequence_TypeDeclaration(context, (TypeDeclaration) semanticObject); 
 				return; 
 			case JavaDslPackage.VARIABLE_DECLARATOR:
 				sequence_VariableDeclarator(context, (VariableDeclarator) semanticObject); 
+				return; 
+			case JavaDslPackage.VARIABLE_INITIALIZER:
+				sequence_VariableInitializer(context, (VariableInitializer) semanticObject); 
 				return; 
 			case JavaDslPackage.WHILE_STATEMENT:
 				sequence_WhileStatement(context, (WhileStatement) semanticObject); 
@@ -454,7 +464,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     VariableInitializer returns Assignment
 	 *     BlockStatement returns Assignment
 	 *     Statement returns Assignment
 	 *     StatementExpression returns Assignment
@@ -606,16 +615,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ClassMemberDeclaration returns ClassMemberDeclaration
 	 *
 	 * Constraint:
-	 *     field=FieldDeclaration
+	 *     (field=FieldDeclaration | method=MethodDeclaration)
 	 */
 	protected void sequence_ClassMemberDeclaration(ISerializationContext context, ClassMemberDeclaration semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, JavaDslPackage.Literals.CLASS_MEMBER_DECLARATION__FIELD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JavaDslPackage.Literals.CLASS_MEMBER_DECLARATION__FIELD));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getClassMemberDeclarationAccess().getFieldFieldDeclarationParserRuleCall_0_0(), semanticObject.getField());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -649,7 +652,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     VariableInitializer returns ConditionalExpression
 	 *     ConstantExpression returns ConditionalExpression
 	 *     Expression returns ConditionalExpression
 	 *     AssignmentExpression returns ConditionalExpression
@@ -1059,7 +1061,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     ClassMemberDeclaration returns MethodDeclaration
 	 *     MethodDeclaration returns MethodDeclaration
 	 *
 	 * Constraint:
@@ -1174,7 +1175,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PostfixExpression returns PostfixExpression
 	 *
 	 * Constraint:
-	 *     ((object=Primary | reference=ExpressionName) operators+='--'? (operators+='++'? operators+='--'?)*)
+	 *     ((object=Primary | reference=ExpressionName) operators+='++'? (operators+='--'? operators+='++'?)*)
 	 */
 	protected void sequence_PostfixExpression(ISerializationContext context, PostfixExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1282,6 +1283,24 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_RelationalExpression(ISerializationContext context, RelationalExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ResultType returns ResultType
+	 *
+	 * Constraint:
+	 *     type=Type
+	 */
+	protected void sequence_ResultType(ISerializationContext context, ResultType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, JavaDslPackage.Literals.RESULT_TYPE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JavaDslPackage.Literals.RESULT_TYPE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getResultTypeAccess().getTypeTypeParserRuleCall_0_0(), semanticObject.getType());
+		feeder.finish();
 	}
 	
 	
@@ -1421,6 +1440,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Type returns Type
+	 *
+	 * Constraint:
+	 *     (name=PrimitiveType | name=ReferenceType)
+	 */
+	protected void sequence_Type(ISerializationContext context, Type semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     VariableDeclarator returns VariableDeclarator
 	 *
 	 * Constraint:
@@ -1428,6 +1459,24 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_VariableDeclarator(ISerializationContext context, VariableDeclarator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     VariableInitializer returns VariableInitializer
+	 *
+	 * Constraint:
+	 *     exp=Expression
+	 */
+	protected void sequence_VariableInitializer(ISerializationContext context, VariableInitializer semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, JavaDslPackage.Literals.VARIABLE_INITIALIZER__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JavaDslPackage.Literals.VARIABLE_INITIALIZER__EXP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getVariableInitializerAccess().getExpExpressionParserRuleCall_0_0(), semanticObject.getExp());
+		feeder.finish();
 	}
 	
 	

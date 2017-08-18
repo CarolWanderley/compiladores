@@ -12,14 +12,21 @@ import org.xtext.example.mydsl1.javaDsl.VariableDeclarator;
 import org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration;
 import org.xtext.example.mydsl1.javaDsl.InterfaceDeclaration;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
+import org.xtext.example.mydsl1.javaDsl.MethodDeclaration;
+
+import org.xtext.example.mydsl1.exception.ValidationException;
 
 import org.eclipse.xtext.validation.Check;
 
+import java.util.List;
+import java.util.ArrayList;
+
+import org.xtext.example.mydsl1.validation.utils.IfThenElseValidator;
 import org.xtext.example.mydsl1.validation.utils.ValidatorRepository;
 import org.xtext.example.mydsl1.validation.utils.ClassValidator;
 import org.xtext.example.mydsl1.validation.utils.ExtendsValidator;
-import java.util.List
-import java.util.ArrayList
+import org.xtext.example.mydsl1.validation.utils.ClassAttributeValidator;
+import org.xtext.example.mydsl1.javaDsl.IfStatement
 
 /**
  * This class contains custom validation rules. 
@@ -41,9 +48,17 @@ class MyDslValidator extends AbstractMyDslValidator {
 			if (td.name !== null && td.name instanceof ClassDeclaration) {
 				var ExtendsValidator extendsValidator = new ExtendsValidator(validator);
 				var ClassDeclaration cd = td.name as ClassDeclaration;
-				extendsValidator.validate(cd);
+				try {
+					extendsValidator.validate(cd);	
+				} catch (ValidationException e) {
+					error(e.message, cd, JavaDslPackage.Literals.CLASS_DECLARATION__CLASS_NAME);
+				}
+				mapAndValidateAttributes(cd);
+				validateMethods(cd);
 			}
 		}
+		
+		
 	}  
 	
 	def mapAndValidateClasses(TypeDeclaration td) {
@@ -72,46 +87,76 @@ class MyDslValidator extends AbstractMyDslValidator {
 	}
 	
 	def mapAndValidateAttributes(ClassDeclaration cd) {
+		try {
+			for (ClassBodyDeclaration cbd : cd.body.declarations) {
+				if (cbd.member !== null && cbd.member instanceof ClassMemberDeclaration) {
+					var ClassMemberDeclaration cmd = cbd.member as ClassMemberDeclaration;
+					if (cmd.field !== null && cmd.field instanceof FieldDeclaration) {
+						var FieldDeclaration fd = cmd.field as FieldDeclaration;
+						var ClassAttributeValidator cav = new ClassAttributeValidator(validator);
+						cav.validate(cd, fd);
+						validator.classAttributes.get(cd.className).add(fd);
+					}
+				}
+			}
+			
+			for (FieldDeclaration fd : validator.classAttributes.get(cd.className)) {
+				if (fd.variables !== null) {
+					for (VariableDeclarator vd : fd.variables) {
+						// validateAttributeWithExpression(fd, vd, cd.className);
+					}
+				}
+			}	
+		} catch (ValidationException e) {
+			if (e.argA instanceof FieldDeclaration) {
+				var FieldDeclaration fd = e.argA as FieldDeclaration;
+				error(e.message, fd, JavaDslPackage.Literals.FIELD_DECLARATION__TYPE);
+			} else if (e.argA instanceof VariableDeclarator) {
+				var VariableDeclarator vd = e.argA as VariableDeclarator;
+				error(e.message, vd, JavaDslPackage.Literals.VARIABLE_DECLARATOR__NAME);
+			}
+		}
+	}
+	
+	def validateMethods(ClassDeclaration cd) {
+		var List<String> methods = new ArrayList<String>();
 		for (ClassBodyDeclaration cbd : cd.body.declarations) {
-			if (cbd.member !== null && cbd.member instanceof ClassMemberDeclaration) {
-				var ClassMemberDeclaration cmd = cbd.member as ClassMemberDeclaration;
-				if (cmd.field !== null && cmd.field instanceof FieldDeclaration) {
-					var FieldDeclaration fd = cmd.field as FieldDeclaration;
-					validateClassAttributes(cd, fd);
-					validator.classAttributes.get(cd.className).add(fd);
+			var ClassMemberDeclaration cmd = cbd.member;
+			var MethodDeclaration md = cmd.method;
+			if (md !== null) {
+				if (methods.contains(md.signature.header.name)) {
+					error("Method " + md.signature.header.name + " already exists.", md, JavaDslPackage.Literals.METHOD_DECLARATION__SIGNATURE);
 				}
-			}
-		}
-		
-		for (FieldDeclaration fd : validator.classAttributes.get(cd.className)) {
-			if (fd.variables !== null) {
-				for (VariableDeclarator vd : fd.variables) {
-					validateAttributeWithExpression(fd, vd, cd.className);
+				methods.add(md.signature.header.name);
+				validator.classMethods.get(cd.className).add(md);
+				var ClassValidator cv = new ClassValidator(validator);
+				try {
+					cv.validateMethod(md);
+				} catch (Exception e) {
+					error(e.message, md, JavaDslPackage.Literals.METHOD_DECLARATION__SIGNATURE);
 				}
 			}
 		}
 	}
 	
-	def validateClassAttributes(ClassDeclaration cd, FieldDeclaration fd) {
-		if (validator.classAttributes.get(fd.type) === null && !isPrimitive(fd.type)) {
-			error("This object " + fd.type + " does not exist", fd, JavaDslPackage.Literals.FIELD_DECLARATION__TYPE);
+	@Check
+	def validateIfStatement(IfStatement ifs) {
+		System.out.println("AQUI OH");
+		var IfThenElseValidator ift = new IfThenElseValidator(validator);
+		try {
+			ift.validate(ifs);
+		} catch (Exception e) {
+			error(e.message, ifs, JavaDslPackage.Literals.IF_STATEMENT__CONDITION);
 		}
-		var List<String> variableNames = new ArrayList<String>();
-		if (fd.variables !== null) {
-			for (VariableDeclarator vd : fd.variables) {
-				if (validator.hasClassAttribute(cd, vd.name) || variableNames.contains(vd.name)) {
-					error("Field " + vd.name + " duplicated.", vd, JavaDslPackage.Literals.VARIABLE_DECLARATOR__NAME);
-				}
-				variableNames.add(vd.name);
+	}
+	
+	def hasMethod(String className, MethodDeclaration md) {
+		for (MethodDeclaration mdAux : validator.classMethods.get(className)) {
+			if (mdAux.signature.header.name === md.signature.header.name) {
+				return true;
 			}
 		}
+		return false;
 	}
 	
-	
-	
-	def isPrimitive(String type) {
-		return type.equals("int") || type.equals("boolean") || type.equals("byte") || type.equals("char") ||
-			type.equals("short") || type.equals("float") || type.equals("double") || type.equals("long") ||
-			type.equals("void");
-	}
 }

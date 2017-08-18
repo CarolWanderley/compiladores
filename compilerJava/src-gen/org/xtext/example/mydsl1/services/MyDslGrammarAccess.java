@@ -381,13 +381,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cFieldAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cFieldFieldDeclarationParserRuleCall_0_0 = (RuleCall)cFieldAssignment_0.eContents().get(0);
-		private final RuleCall cMethodDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Assignment cMethodAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cMethodMethodDeclarationParserRuleCall_1_0 = (RuleCall)cMethodAssignment_1.eContents().get(0);
 		
 		//ClassMemberDeclaration:
-		//	field=FieldDeclaration | MethodDeclaration;
+		//	field=FieldDeclaration | method=MethodDeclaration;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//field=FieldDeclaration | MethodDeclaration
+		//field=FieldDeclaration | method=MethodDeclaration
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//field=FieldDeclaration
@@ -396,8 +397,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//FieldDeclaration
 		public RuleCall getFieldFieldDeclarationParserRuleCall_0_0() { return cFieldFieldDeclarationParserRuleCall_0_0; }
 		
+		//method=MethodDeclaration
+		public Assignment getMethodAssignment_1() { return cMethodAssignment_1; }
+		
 		//MethodDeclaration
-		public RuleCall getMethodDeclarationParserRuleCall_1() { return cMethodDeclarationParserRuleCall_1; }
+		public RuleCall getMethodMethodDeclarationParserRuleCall_1_0() { return cMethodMethodDeclarationParserRuleCall_1_0; }
 	}
 	public class StaticInitializerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl1.MyDsl.StaticInitializer");
@@ -865,18 +869,22 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class VariableInitializerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl1.MyDsl.VariableInitializer");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Assignment cExpAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cExpExpressionParserRuleCall_0_0 = (RuleCall)cExpAssignment_0.eContents().get(0);
 		private final RuleCall cArrayInitializerParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//VariableInitializer:
-		//	Expression | ArrayInitializer;
+		//	exp=Expression | ArrayInitializer;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Expression | ArrayInitializer
+		//exp=Expression | ArrayInitializer
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//exp=Expression
+		public Assignment getExpAssignment_0() { return cExpAssignment_0; }
+		
 		//Expression
-		public RuleCall getExpressionParserRuleCall_0() { return cExpressionParserRuleCall_0; }
+		public RuleCall getExpExpressionParserRuleCall_0_0() { return cExpExpressionParserRuleCall_0_0; }
 		
 		//ArrayInitializer
 		public RuleCall getArrayInitializerParserRuleCall_1() { return cArrayInitializerParserRuleCall_1; }
@@ -963,18 +971,22 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class ResultTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl1.MyDsl.ResultType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Assignment cTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cTypeTypeParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final RuleCall cVOIDTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//ResultType:
-		//	Type | VOID;
+		//	type=Type | VOID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Type | VOID
+		//type=Type | VOID
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//type=Type
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		
 		//Type
-		public RuleCall getTypeParserRuleCall_0() { return cTypeParserRuleCall_0; }
+		public RuleCall getTypeTypeParserRuleCall_0_0() { return cTypeTypeParserRuleCall_0_0; }
 		
 		//VOID
 		public RuleCall getVOIDTerminalRuleCall_1() { return cVOIDTerminalRuleCall_1; }
@@ -1414,25 +1426,33 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl1.MyDsl.Type");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cPrimitiveTypeParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
-		private final RuleCall cReferenceTypeParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final Assignment cNameAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final RuleCall cNamePrimitiveTypeParserRuleCall_0_0_0 = (RuleCall)cNameAssignment_0_0.eContents().get(0);
+		private final Assignment cNameAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final RuleCall cNameReferenceTypeParserRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
 		private final RuleCall cArrayTypeParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Type:
-		//	(PrimitiveType | ReferenceType) ArrayType*;
+		//	(name=PrimitiveType | name=ReferenceType) ArrayType*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(PrimitiveType | ReferenceType) ArrayType*
+		//(name=PrimitiveType | name=ReferenceType) ArrayType*
 		public Group getGroup() { return cGroup; }
 		
-		//PrimitiveType | ReferenceType
+		//name=PrimitiveType | name=ReferenceType
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
+		//name=PrimitiveType
+		public Assignment getNameAssignment_0_0() { return cNameAssignment_0_0; }
+		
 		//PrimitiveType
-		public RuleCall getPrimitiveTypeParserRuleCall_0_0() { return cPrimitiveTypeParserRuleCall_0_0; }
+		public RuleCall getNamePrimitiveTypeParserRuleCall_0_0_0() { return cNamePrimitiveTypeParserRuleCall_0_0_0; }
+		
+		//name=ReferenceType
+		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
 		
 		//ReferenceType
-		public RuleCall getReferenceTypeParserRuleCall_0_1() { return cReferenceTypeParserRuleCall_0_1; }
+		public RuleCall getNameReferenceTypeParserRuleCall_0_1_0() { return cNameReferenceTypeParserRuleCall_0_1_0; }
 		
 		//ArrayType*
 		public RuleCall getArrayTypeParserRuleCall_1() { return cArrayTypeParserRuleCall_1; }
@@ -4852,7 +4872,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ClassMemberDeclaration:
-	//	field=FieldDeclaration | MethodDeclaration;
+	//	field=FieldDeclaration | method=MethodDeclaration;
 	public ClassMemberDeclarationElements getClassMemberDeclarationAccess() {
 		return pClassMemberDeclaration;
 	}
@@ -4985,7 +5005,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//VariableInitializer:
-	//	Expression | ArrayInitializer;
+	//	exp=Expression | ArrayInitializer;
 	public VariableInitializerElements getVariableInitializerAccess() {
 		return pVariableInitializer;
 	}
@@ -5016,7 +5036,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ResultType:
-	//	Type | VOID;
+	//	type=Type | VOID;
 	public ResultTypeElements getResultTypeAccess() {
 		return pResultType;
 	}
@@ -5149,7 +5169,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Type:
-	//	(PrimitiveType | ReferenceType) ArrayType*;
+	//	(name=PrimitiveType | name=ReferenceType) ArrayType*;
 	public TypeElements getTypeAccess() {
 		return pType;
 	}

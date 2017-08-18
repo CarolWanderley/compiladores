@@ -219,7 +219,6 @@ public class JavaDslSwitch<T> extends Switch<T>
       {
         MethodDeclaration methodDeclaration = (MethodDeclaration)theEObject;
         T result = caseMethodDeclaration(methodDeclaration);
-        if (result == null) result = caseClassMemberDeclaration(methodDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -227,6 +226,13 @@ public class JavaDslSwitch<T> extends Switch<T>
       {
         MethodHeader methodHeader = (MethodHeader)theEObject;
         T result = caseMethodHeader(methodHeader);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case JavaDslPackage.RESULT_TYPE:
+      {
+        ResultType resultType = (ResultType)theEObject;
+        T result = caseResultType(resultType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -286,6 +292,13 @@ public class JavaDslSwitch<T> extends Switch<T>
         ArrayInitializer arrayInitializer = (ArrayInitializer)theEObject;
         T result = caseArrayInitializer(arrayInitializer);
         if (result == null) result = caseVariableInitializer(arrayInitializer);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case JavaDslPackage.TYPE:
+      {
+        Type type = (Type)theEObject;
+        T result = caseType(type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -463,7 +476,6 @@ public class JavaDslSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
-        if (result == null) result = caseVariableInitializer(expression);
         if (result == null) result = caseConstantExpression(expression);
         if (result == null) result = casePrimaryNoNewArray(expression);
         if (result == null) result = casePrimary(expression);
@@ -475,7 +487,6 @@ public class JavaDslSwitch<T> extends Switch<T>
         AssignmentExpression assignmentExpression = (AssignmentExpression)theEObject;
         T result = caseAssignmentExpression(assignmentExpression);
         if (result == null) result = caseExpression(assignmentExpression);
-        if (result == null) result = caseVariableInitializer(assignmentExpression);
         if (result == null) result = caseConstantExpression(assignmentExpression);
         if (result == null) result = casePrimaryNoNewArray(assignmentExpression);
         if (result == null) result = casePrimary(assignmentExpression);
@@ -491,7 +502,6 @@ public class JavaDslSwitch<T> extends Switch<T>
         if (result == null) result = caseStatement(assignment);
         if (result == null) result = caseExpression(assignment);
         if (result == null) result = caseBlockStatement(assignment);
-        if (result == null) result = caseVariableInitializer(assignment);
         if (result == null) result = caseConstantExpression(assignment);
         if (result == null) result = casePrimaryNoNewArray(assignment);
         if (result == null) result = casePrimary(assignment);
@@ -511,7 +521,6 @@ public class JavaDslSwitch<T> extends Switch<T>
         T result = caseConditionalExpression(conditionalExpression);
         if (result == null) result = caseAssignmentExpression(conditionalExpression);
         if (result == null) result = caseExpression(conditionalExpression);
-        if (result == null) result = caseVariableInitializer(conditionalExpression);
         if (result == null) result = caseConstantExpression(conditionalExpression);
         if (result == null) result = casePrimaryNoNewArray(conditionalExpression);
         if (result == null) result = casePrimary(conditionalExpression);
@@ -1083,6 +1092,22 @@ public class JavaDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Result Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Result Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseResultType(ResultType object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Method Declarator</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1206,6 +1231,22 @@ public class JavaDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseArrayInitializer(ArrayInitializer object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseType(Type object)
   {
     return null;
   }

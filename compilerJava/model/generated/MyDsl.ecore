@@ -51,6 +51,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ClassMemberDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="field" eType="#//FieldDeclaration"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="method" eType="#//MethodDeclaration"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StaticInitializer" eSuperTypes="#//ClassBodyDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="code" eType="#//Block"
@@ -72,7 +74,7 @@
         eType="#//FormalParameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FormalParameter">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Exceptions">
@@ -93,7 +95,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="FieldDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiers" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//VariableDeclarator" containment="true"/>
   </eClassifiers>
@@ -102,8 +104,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//VariableInitializer"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableInitializer"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MethodDeclaration" eSuperTypes="#//ClassMemberDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="VariableInitializer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="signature" eType="#//MethodHeader"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Block"
@@ -112,11 +117,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="MethodHeader">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiers" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//ResultType"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="header" eType="#//MethodDeclarator"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="throws" eType="#//Exceptions"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResultType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodDeclarator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -146,12 +155,13 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantDeclaration" eSuperTypes="#//InterfaceMemberDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constant" eType="#//VariableDeclarator"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractMethodDeclaration" eSuperTypes="#//InterfaceMemberDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//ResultType"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="header" eType="#//MethodDeclarator"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="throws" eType="#//Exceptions"
@@ -161,13 +171,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
         eType="#//VariableInitializer" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
         eType="#//BlockStatement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlockStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="LocalVariableDeclaration" eSuperTypes="#//BlockStatement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//VariableDeclarator" containment="true"/>
   </eClassifiers>
@@ -253,7 +266,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//VariableInitializer #//ConstantExpression #//PrimaryNoNewArray"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//ConstantExpression #//PrimaryNoNewArray"/>
   <eClassifiers xsi:type="ecore:EClass" name="AssignmentExpression" eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//StatementExpression #//AssignmentExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//LeftHandSide"

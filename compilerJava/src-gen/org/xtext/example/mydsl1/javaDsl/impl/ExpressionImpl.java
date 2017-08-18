@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.example.mydsl1.javaDsl.ArgumentList;
 import org.xtext.example.mydsl1.javaDsl.ArrayExpression;
 import org.xtext.example.mydsl1.javaDsl.ClassInstanceCreationExpression;
-import org.xtext.example.mydsl1.javaDsl.ConstantExpression;
 import org.xtext.example.mydsl1.javaDsl.Expression;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
 import org.xtext.example.mydsl1.javaDsl.Primary;
@@ -48,7 +47,7 @@ import org.xtext.example.mydsl1.javaDsl.PrimaryNoNewArray;
  *
  * @generated
  */
-public class ExpressionImpl extends VariableInitializerImpl implements Expression
+public class ExpressionImpl extends ConstantExpressionImpl implements Expression
 {
   /**
    * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
@@ -541,13 +540,6 @@ public class ExpressionImpl extends VariableInitializerImpl implements Expressio
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
-    if (baseClass == ConstantExpression.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == Primary.class)
     {
       switch (derivedFeatureID)
@@ -581,13 +573,6 @@ public class ExpressionImpl extends VariableInitializerImpl implements Expressio
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
-    if (baseClass == ConstantExpression.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == Primary.class)
     {
       switch (baseFeatureID)

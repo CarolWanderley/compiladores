@@ -30,7 +30,6 @@ import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
 import org.xtext.example.mydsl1.javaDsl.LeftHandSide;
 import org.xtext.example.mydsl1.javaDsl.Primary;
 import org.xtext.example.mydsl1.javaDsl.PrimaryNoNewArray;
-import org.xtext.example.mydsl1.javaDsl.VariableInitializer;
 
 /**
  * <!-- begin-user-doc -->
@@ -741,13 +740,6 @@ public class AssignmentImpl extends StatementExpressionImpl implements Assignmen
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
-    if (baseClass == VariableInitializer.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == ConstantExpression.class)
     {
       switch (derivedFeatureID)
@@ -802,13 +794,6 @@ public class AssignmentImpl extends StatementExpressionImpl implements Assignmen
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
-    if (baseClass == VariableInitializer.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == ConstantExpression.class)
     {
       switch (baseFeatureID)

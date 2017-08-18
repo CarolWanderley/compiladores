@@ -80,6 +80,7 @@ import org.xtext.example.mydsl1.javaDsl.Primary;
 import org.xtext.example.mydsl1.javaDsl.PrimaryNewArray;
 import org.xtext.example.mydsl1.javaDsl.PrimaryNoNewArray;
 import org.xtext.example.mydsl1.javaDsl.RelationalExpression;
+import org.xtext.example.mydsl1.javaDsl.ResultType;
 import org.xtext.example.mydsl1.javaDsl.ReturnStatement;
 import org.xtext.example.mydsl1.javaDsl.ShiftExpression;
 import org.xtext.example.mydsl1.javaDsl.Statement;
@@ -89,6 +90,7 @@ import org.xtext.example.mydsl1.javaDsl.SwitchStatement;
 import org.xtext.example.mydsl1.javaDsl.SynchronizedStatement;
 import org.xtext.example.mydsl1.javaDsl.ThrowsStatement;
 import org.xtext.example.mydsl1.javaDsl.TryStatement;
+import org.xtext.example.mydsl1.javaDsl.Type;
 import org.xtext.example.mydsl1.javaDsl.TypeDeclaration;
 import org.xtext.example.mydsl1.javaDsl.VariableDeclarator;
 import org.xtext.example.mydsl1.javaDsl.VariableInitializer;
@@ -261,6 +263,13 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass resultTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass methodDeclaratorEClass = null;
 
   /**
@@ -311,6 +320,13 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * @generated
    */
   private EClass arrayInitializerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1027,6 +1043,16 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getClassMemberDeclaration_Method()
+  {
+    return (EReference)classMemberDeclarationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getStaticInitializer()
   {
     return staticInitializerEClass;
@@ -1137,9 +1163,9 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFormalParameter_Type()
+  public EReference getFormalParameter_Type()
   {
-    return (EAttribute)formalParameterEClass.getEStructuralFeatures().get(0);
+    return (EReference)formalParameterEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1257,9 +1283,9 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFieldDeclaration_Type()
+  public EReference getFieldDeclaration_Type()
   {
-    return (EAttribute)fieldDeclarationEClass.getEStructuralFeatures().get(1);
+    return (EReference)fieldDeclarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1317,6 +1343,16 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getVariableInitializer_Exp()
+  {
+    return (EReference)variableInitializerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMethodDeclaration()
   {
     return methodDeclarationEClass;
@@ -1367,9 +1403,9 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMethodHeader_ReturnType()
+  public EReference getMethodHeader_ReturnType()
   {
-    return (EAttribute)methodHeaderEClass.getEStructuralFeatures().get(1);
+    return (EReference)methodHeaderEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1390,6 +1426,26 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
   public EReference getMethodHeader_Throws()
   {
     return (EReference)methodHeaderEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getResultType()
+  {
+    return resultTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getResultType_Type()
+  {
+    return (EReference)resultTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1557,9 +1613,9 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getConstantDeclaration_Type()
+  public EReference getConstantDeclaration_Type()
   {
-    return (EAttribute)constantDeclarationEClass.getEStructuralFeatures().get(0);
+    return (EReference)constantDeclarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1587,9 +1643,9 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAbstractMethodDeclaration_ReturnType()
+  public EReference getAbstractMethodDeclaration_ReturnType()
   {
-    return (EAttribute)abstractMethodDeclarationEClass.getEStructuralFeatures().get(0);
+    return (EReference)abstractMethodDeclarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1637,6 +1693,26 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getType()
+  {
+    return typeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getType_Name()
+  {
+    return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBlock()
   {
     return blockEClass;
@@ -1677,9 +1753,9 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLocalVariableDeclaration_Type()
+  public EReference getLocalVariableDeclaration_Type()
   {
-    return (EAttribute)localVariableDeclarationEClass.getEStructuralFeatures().get(0);
+    return (EReference)localVariableDeclarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3120,6 +3196,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
 
     classMemberDeclarationEClass = createEClass(CLASS_MEMBER_DECLARATION);
     createEReference(classMemberDeclarationEClass, CLASS_MEMBER_DECLARATION__FIELD);
+    createEReference(classMemberDeclarationEClass, CLASS_MEMBER_DECLARATION__METHOD);
 
     staticInitializerEClass = createEClass(STATIC_INITIALIZER);
     createEReference(staticInitializerEClass, STATIC_INITIALIZER__CODE);
@@ -3135,7 +3212,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     createEReference(constructorDeclaratorEClass, CONSTRUCTOR_DECLARATOR__PARAMS);
 
     formalParameterEClass = createEClass(FORMAL_PARAMETER);
-    createEAttribute(formalParameterEClass, FORMAL_PARAMETER__TYPE);
+    createEReference(formalParameterEClass, FORMAL_PARAMETER__TYPE);
     createEAttribute(formalParameterEClass, FORMAL_PARAMETER__VARIABLE);
 
     exceptionsEClass = createEClass(EXCEPTIONS);
@@ -3151,7 +3228,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
 
     fieldDeclarationEClass = createEClass(FIELD_DECLARATION);
     createEAttribute(fieldDeclarationEClass, FIELD_DECLARATION__MODIFIERS);
-    createEAttribute(fieldDeclarationEClass, FIELD_DECLARATION__TYPE);
+    createEReference(fieldDeclarationEClass, FIELD_DECLARATION__TYPE);
     createEReference(fieldDeclarationEClass, FIELD_DECLARATION__VARIABLES);
 
     variableDeclaratorEClass = createEClass(VARIABLE_DECLARATOR);
@@ -3159,6 +3236,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     createEReference(variableDeclaratorEClass, VARIABLE_DECLARATOR__VALUE);
 
     variableInitializerEClass = createEClass(VARIABLE_INITIALIZER);
+    createEReference(variableInitializerEClass, VARIABLE_INITIALIZER__EXP);
 
     methodDeclarationEClass = createEClass(METHOD_DECLARATION);
     createEReference(methodDeclarationEClass, METHOD_DECLARATION__SIGNATURE);
@@ -3166,9 +3244,12 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
 
     methodHeaderEClass = createEClass(METHOD_HEADER);
     createEAttribute(methodHeaderEClass, METHOD_HEADER__MODIFIERS);
-    createEAttribute(methodHeaderEClass, METHOD_HEADER__RETURN_TYPE);
+    createEReference(methodHeaderEClass, METHOD_HEADER__RETURN_TYPE);
     createEReference(methodHeaderEClass, METHOD_HEADER__HEADER);
     createEReference(methodHeaderEClass, METHOD_HEADER__THROWS);
+
+    resultTypeEClass = createEClass(RESULT_TYPE);
+    createEReference(resultTypeEClass, RESULT_TYPE__TYPE);
 
     methodDeclaratorEClass = createEClass(METHOD_DECLARATOR);
     createEAttribute(methodDeclaratorEClass, METHOD_DECLARATOR__NAME);
@@ -3191,16 +3272,19 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     createEAttribute(interfaceMemberDeclarationEClass, INTERFACE_MEMBER_DECLARATION__MODIFIERS);
 
     constantDeclarationEClass = createEClass(CONSTANT_DECLARATION);
-    createEAttribute(constantDeclarationEClass, CONSTANT_DECLARATION__TYPE);
+    createEReference(constantDeclarationEClass, CONSTANT_DECLARATION__TYPE);
     createEReference(constantDeclarationEClass, CONSTANT_DECLARATION__CONSTANT);
 
     abstractMethodDeclarationEClass = createEClass(ABSTRACT_METHOD_DECLARATION);
-    createEAttribute(abstractMethodDeclarationEClass, ABSTRACT_METHOD_DECLARATION__RETURN_TYPE);
+    createEReference(abstractMethodDeclarationEClass, ABSTRACT_METHOD_DECLARATION__RETURN_TYPE);
     createEReference(abstractMethodDeclarationEClass, ABSTRACT_METHOD_DECLARATION__HEADER);
     createEReference(abstractMethodDeclarationEClass, ABSTRACT_METHOD_DECLARATION__THROWS);
 
     arrayInitializerEClass = createEClass(ARRAY_INITIALIZER);
     createEReference(arrayInitializerEClass, ARRAY_INITIALIZER__VALUES);
+
+    typeEClass = createEClass(TYPE);
+    createEAttribute(typeEClass, TYPE__NAME);
 
     blockEClass = createEClass(BLOCK);
     createEReference(blockEClass, BLOCK__DECLARATIONS);
@@ -3208,7 +3292,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     blockStatementEClass = createEClass(BLOCK_STATEMENT);
 
     localVariableDeclarationEClass = createEClass(LOCAL_VARIABLE_DECLARATION);
-    createEAttribute(localVariableDeclarationEClass, LOCAL_VARIABLE_DECLARATION__TYPE);
+    createEReference(localVariableDeclarationEClass, LOCAL_VARIABLE_DECLARATION__TYPE);
     createEReference(localVariableDeclarationEClass, LOCAL_VARIABLE_DECLARATION__VARIABLES);
 
     statementEClass = createEClass(STATEMENT);
@@ -3427,7 +3511,6 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     // Add supertypes to classes
     staticInitializerEClass.getESuperTypes().add(this.getClassBodyDeclaration());
     constructorDeclarationEClass.getESuperTypes().add(this.getClassBodyDeclaration());
-    methodDeclarationEClass.getESuperTypes().add(this.getClassMemberDeclaration());
     constantDeclarationEClass.getESuperTypes().add(this.getInterfaceMemberDeclaration());
     abstractMethodDeclarationEClass.getESuperTypes().add(this.getInterfaceMemberDeclaration());
     arrayInitializerEClass.getESuperTypes().add(this.getVariableInitializer());
@@ -3447,7 +3530,6 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     throwsStatementEClass.getESuperTypes().add(this.getStatement());
     synchronizedStatementEClass.getESuperTypes().add(this.getStatement());
     tryStatementEClass.getESuperTypes().add(this.getStatement());
-    expressionEClass.getESuperTypes().add(this.getVariableInitializer());
     expressionEClass.getESuperTypes().add(this.getConstantExpression());
     expressionEClass.getESuperTypes().add(this.getPrimaryNoNewArray());
     assignmentExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -3508,6 +3590,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
 
     initEClass(classMemberDeclarationEClass, ClassMemberDeclaration.class, "ClassMemberDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getClassMemberDeclaration_Field(), this.getFieldDeclaration(), null, "field", null, 0, 1, ClassMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getClassMemberDeclaration_Method(), this.getMethodDeclaration(), null, "method", null, 0, 1, ClassMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(staticInitializerEClass, StaticInitializer.class, "StaticInitializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getStaticInitializer_Code(), this.getBlock(), null, "code", null, 0, 1, StaticInitializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3523,7 +3606,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     initEReference(getConstructorDeclarator_Params(), this.getFormalParameter(), null, "params", null, 0, -1, ConstructorDeclarator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(formalParameterEClass, FormalParameter.class, "FormalParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFormalParameter_Type(), ecorePackage.getEString(), "type", null, 0, 1, FormalParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFormalParameter_Type(), this.getType(), null, "type", null, 0, 1, FormalParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFormalParameter_Variable(), ecorePackage.getEString(), "variable", null, 0, 1, FormalParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exceptionsEClass, Exceptions.class, "Exceptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3539,7 +3622,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
 
     initEClass(fieldDeclarationEClass, FieldDeclaration.class, "FieldDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFieldDeclaration_Modifiers(), ecorePackage.getEString(), "modifiers", null, 0, -1, FieldDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFieldDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, FieldDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFieldDeclaration_Type(), this.getType(), null, "type", null, 0, 1, FieldDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFieldDeclaration_Variables(), this.getVariableDeclarator(), null, "variables", null, 0, -1, FieldDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableDeclaratorEClass, VariableDeclarator.class, "VariableDeclarator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3547,6 +3630,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     initEReference(getVariableDeclarator_Value(), this.getVariableInitializer(), null, "value", null, 0, 1, VariableDeclarator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableInitializerEClass, VariableInitializer.class, "VariableInitializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getVariableInitializer_Exp(), this.getExpression(), null, "exp", null, 0, 1, VariableInitializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(methodDeclarationEClass, MethodDeclaration.class, "MethodDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMethodDeclaration_Signature(), this.getMethodHeader(), null, "signature", null, 0, 1, MethodDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3554,9 +3638,12 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
 
     initEClass(methodHeaderEClass, MethodHeader.class, "MethodHeader", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMethodHeader_Modifiers(), ecorePackage.getEString(), "modifiers", null, 0, -1, MethodHeader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMethodHeader_ReturnType(), ecorePackage.getEString(), "returnType", null, 0, 1, MethodHeader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMethodHeader_ReturnType(), this.getResultType(), null, "returnType", null, 0, 1, MethodHeader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMethodHeader_Header(), this.getMethodDeclarator(), null, "header", null, 0, 1, MethodHeader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMethodHeader_Throws(), this.getExceptions(), null, "throws", null, 0, 1, MethodHeader.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(resultTypeEClass, ResultType.class, "ResultType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getResultType_Type(), this.getType(), null, "type", null, 0, 1, ResultType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(methodDeclaratorEClass, MethodDeclarator.class, "MethodDeclarator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMethodDeclarator_Name(), ecorePackage.getEString(), "name", null, 0, 1, MethodDeclarator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3579,16 +3666,19 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     initEAttribute(getInterfaceMemberDeclaration_Modifiers(), ecorePackage.getEString(), "modifiers", null, 0, -1, InterfaceMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constantDeclarationEClass, ConstantDeclaration.class, "ConstantDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getConstantDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConstantDeclaration_Type(), this.getType(), null, "type", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConstantDeclaration_Constant(), this.getVariableDeclarator(), null, "constant", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abstractMethodDeclarationEClass, AbstractMethodDeclaration.class, "AbstractMethodDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAbstractMethodDeclaration_ReturnType(), ecorePackage.getEString(), "returnType", null, 0, 1, AbstractMethodDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAbstractMethodDeclaration_ReturnType(), this.getResultType(), null, "returnType", null, 0, 1, AbstractMethodDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAbstractMethodDeclaration_Header(), this.getMethodDeclarator(), null, "header", null, 0, 1, AbstractMethodDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAbstractMethodDeclaration_Throws(), this.getExceptions(), null, "throws", null, 0, 1, AbstractMethodDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayInitializerEClass, ArrayInitializer.class, "ArrayInitializer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArrayInitializer_Values(), this.getVariableInitializer(), null, "values", null, 0, -1, ArrayInitializer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getType_Name(), ecorePackage.getEString(), "name", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBlock_Declarations(), this.getBlockStatement(), null, "declarations", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3596,7 +3686,7 @@ public class JavaDslPackageImpl extends EPackageImpl implements JavaDslPackage
     initEClass(blockStatementEClass, BlockStatement.class, "BlockStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(localVariableDeclarationEClass, LocalVariableDeclaration.class, "LocalVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLocalVariableDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, LocalVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLocalVariableDeclaration_Type(), this.getType(), null, "type", null, 0, 1, LocalVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLocalVariableDeclaration_Variables(), this.getVariableDeclarator(), null, "variables", null, 0, -1, LocalVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

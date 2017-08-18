@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.example.mydsl1.javaDsl.ConstantDeclaration;
 import org.xtext.example.mydsl1.javaDsl.JavaDslPackage;
+import org.xtext.example.mydsl1.javaDsl.Type;
 import org.xtext.example.mydsl1.javaDsl.VariableDeclarator;
 
 /**
@@ -32,24 +33,14 @@ import org.xtext.example.mydsl1.javaDsl.VariableDeclarator;
 public class ConstantDeclarationImpl extends InterfaceMemberDeclarationImpl implements ConstantDeclaration
 {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected Type type;
 
   /**
    * The cached value of the '{@link #getConstant() <em>Constant</em>}' containment reference.
@@ -87,7 +78,7 @@ public class ConstantDeclarationImpl extends InterfaceMemberDeclarationImpl impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getType()
+  public Type getType()
   {
     return type;
   }
@@ -97,12 +88,37 @@ public class ConstantDeclarationImpl extends InterfaceMemberDeclarationImpl impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(String newType)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
-    String oldType = type;
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.CONSTANT_DECLARATION__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JavaDslPackage.CONSTANT_DECLARATION__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(Type newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.CONSTANT_DECLARATION__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JavaDslPackage.CONSTANT_DECLARATION__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JavaDslPackage.CONSTANT_DECLARATION__TYPE, newType, newType));
   }
 
   /**
@@ -163,6 +179,8 @@ public class ConstantDeclarationImpl extends InterfaceMemberDeclarationImpl impl
   {
     switch (featureID)
     {
+      case JavaDslPackage.CONSTANT_DECLARATION__TYPE:
+        return basicSetType(null, msgs);
       case JavaDslPackage.CONSTANT_DECLARATION__CONSTANT:
         return basicSetConstant(null, msgs);
     }
@@ -198,7 +216,7 @@ public class ConstantDeclarationImpl extends InterfaceMemberDeclarationImpl impl
     switch (featureID)
     {
       case JavaDslPackage.CONSTANT_DECLARATION__TYPE:
-        setType((String)newValue);
+        setType((Type)newValue);
         return;
       case JavaDslPackage.CONSTANT_DECLARATION__CONSTANT:
         setConstant((VariableDeclarator)newValue);
@@ -218,7 +236,7 @@ public class ConstantDeclarationImpl extends InterfaceMemberDeclarationImpl impl
     switch (featureID)
     {
       case JavaDslPackage.CONSTANT_DECLARATION__TYPE:
-        setType(TYPE_EDEFAULT);
+        setType((Type)null);
         return;
       case JavaDslPackage.CONSTANT_DECLARATION__CONSTANT:
         setConstant((VariableDeclarator)null);
@@ -238,28 +256,11 @@ public class ConstantDeclarationImpl extends InterfaceMemberDeclarationImpl impl
     switch (featureID)
     {
       case JavaDslPackage.CONSTANT_DECLARATION__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        return type != null;
       case JavaDslPackage.CONSTANT_DECLARATION__CONSTANT:
         return constant != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (type: ");
-    result.append(type);
-    result.append(')');
-    return result.toString();
   }
 
 } //ConstantDeclarationImpl

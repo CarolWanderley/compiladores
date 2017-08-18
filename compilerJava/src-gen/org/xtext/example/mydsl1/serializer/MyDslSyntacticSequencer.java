@@ -27,6 +27,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PrimaryNewArray___LeftParenthesisKeyword_1_0_0_2_0_RightParenthesisKeyword_1_0_0_2_2__q;
 	protected AbstractElementAlias match_PrimaryNoNewArray___LeftParenthesisKeyword_1_0_0_2_0_RightParenthesisKeyword_1_0_0_2_2__q;
 	protected AbstractElementAlias match_SwitchStatement___DEFAULTTerminalRuleCall_5_1_0_ColonKeyword_5_1_1__a;
+	protected AbstractElementAlias match_Type_ArrayTypeParserRuleCall_1_a;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -36,11 +37,14 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PrimaryNewArray___LeftParenthesisKeyword_1_0_0_2_0_RightParenthesisKeyword_1_0_0_2_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getPrimaryNewArrayAccess().getLeftParenthesisKeyword_1_0_0_2_0()), new TokenAlias(false, false, grammarAccess.getPrimaryNewArrayAccess().getRightParenthesisKeyword_1_0_0_2_2()));
 		match_PrimaryNoNewArray___LeftParenthesisKeyword_1_0_0_2_0_RightParenthesisKeyword_1_0_0_2_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getPrimaryNoNewArrayAccess().getLeftParenthesisKeyword_1_0_0_2_0()), new TokenAlias(false, false, grammarAccess.getPrimaryNoNewArrayAccess().getRightParenthesisKeyword_1_0_0_2_2()));
 		match_SwitchStatement___DEFAULTTerminalRuleCall_5_1_0_ColonKeyword_5_1_1__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getSwitchStatementAccess().getDEFAULTTerminalRuleCall_5_1_0()), new TokenAlias(false, false, grammarAccess.getSwitchStatementAccess().getColonKeyword_5_1_1()));
+		match_Type_ArrayTypeParserRuleCall_1_a = new TokenAlias(true, true, grammarAccess.getTypeAccess().getArrayTypeParserRuleCall_1());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getBREAKRule())
+		if (ruleCall.getRule() == grammarAccess.getArrayTypeRule())
+			return getArrayTypeToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getBREAKRule())
 			return getBREAKToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getCASERule())
 			return getCASEToken(semanticObject, ruleCall, node);
@@ -90,9 +94,22 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getTHROWSToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getTRYRule())
 			return getTRYToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getVOIDRule())
+			return getVOIDToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getWHILERule())
 			return getWHILEToken(semanticObject, ruleCall, node);
 		return "";
+	}
+	
+	/**
+	 * ArrayType:
+	 * 	"[]"
+	 * ;
+	 */
+	protected String getArrayTypeToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "[]";
 	}
 	
 	/**
@@ -372,6 +389,17 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * terminal VOID:
+	 * 	"void"
+	 * ;
+	 */
+	protected String getVOIDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "void";
+	}
+	
+	/**
 	 * terminal WHILE:
 	 * 	"while"
 	 * ;
@@ -398,6 +426,8 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PrimaryNoNewArray___LeftParenthesisKeyword_1_0_0_2_0_RightParenthesisKeyword_1_0_0_2_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SwitchStatement___DEFAULTTerminalRuleCall_5_1_0_ColonKeyword_5_1_1__a.equals(syntax))
 				emit_SwitchStatement___DEFAULTTerminalRuleCall_5_1_0_ColonKeyword_5_1_1__a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Type_ArrayTypeParserRuleCall_1_a.equals(syntax))
+				emit_Type_ArrayTypeParserRuleCall_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -416,7 +446,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     EmptyStatement | (BREAK ';') | (RETURN ';') | ('{' '}') | (CONTINUE ';')
+	 *     EmptyStatement | (BREAK ';') | (CONTINUE ';') | (RETURN ';') | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
@@ -467,6 +497,18 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     statements+=BlockStatement (ambiguity) statements+=BlockStatement
 	 */
 	protected void emit_SwitchStatement___DEFAULTTerminalRuleCall_5_1_0_ColonKeyword_5_1_1__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ArrayType*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=PrimitiveType (ambiguity) (rule end)
+	 *     name=ReferenceType (ambiguity) (rule end)
+	 */
+	protected void emit_Type_ArrayTypeParserRuleCall_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

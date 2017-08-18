@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration#getField <em>Field</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration#getMethod <em>Method</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl1.javaDsl.JavaDslPackage#getClassMemberDeclaration()
@@ -48,5 +49,31 @@ public interface ClassMemberDeclaration extends EObject
    * @generated
    */
   void setField(FieldDeclaration value);
+
+  /**
+   * Returns the value of the '<em><b>Method</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Method</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Method</em>' containment reference.
+   * @see #setMethod(MethodDeclaration)
+   * @see org.xtext.example.mydsl1.javaDsl.JavaDslPackage#getClassMemberDeclaration_Method()
+   * @model containment="true"
+   * @generated
+   */
+  MethodDeclaration getMethod();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl1.javaDsl.ClassMemberDeclaration#getMethod <em>Method</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Method</em>' containment reference.
+   * @see #getMethod()
+   * @generated
+   */
+  void setMethod(MethodDeclaration value);
 
 } // ClassMemberDeclaration
