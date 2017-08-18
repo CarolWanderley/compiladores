@@ -1,0 +1,806 @@
+grammar org.xtext.example.mydsl1.MyDsl hidden(WS, DOC_COMMENT, SL_COMMENT)
+
+generate javaDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Head:
+	program=CompilationUnit
+;
+
+CompilationUnit:
+	package=PackageStatement? imports+=ImportStatement* typeDeclarations+=TypeDeclaration*
+;
+
+PackageStatement:
+	=> PACKAGE name=PackageName ";"
+;
+
+ImportStatement:
+	=> IMPORT ( package=PackageName ".*" | object=TypeName ) ";"
+;
+
+TypeDeclaration:
+	doc=DOC_COMMENT? (name=ClassDeclaration | name=InterfaceDeclaration) ";"
+;
+
+ClassDeclaration:
+	modifiers+=ClassModifier*
+	CLASS className=ID (EXTENDS extend=ClassType)? implements=Interfaces? body=ClassBody
+;
+
+ClassModifier:
+	PUBLIC | ABSTRACT | FINAL | PRIVATE
+;
+
+Interfaces:
+	keyword=IMPLEMENTS interfaces+=InterfaceType (=> "," interfaces+=IntegralType )*
+;
+
+ClassBody :
+	"{" declarations+=ClassBodyDeclaration* "}"
+;
+
+ClassBodyDeclaration:
+	member=ClassMemberDeclaration| StaticInitializer | ConstructorDeclaration
+;
+
+ClassMemberDeclaration:
+	field=FieldDeclaration | MethodDeclaration
+;
+
+StaticInitializer:
+	STATIC code=Block
+;
+
+ConstructorDeclaration:
+	modifiers+=ConstructorModifier*
+	header=ConstructorDeclarator throws=Exceptions? body=ConstructorBody
+;
+
+ConstructorModifier:
+	PUBLIC | PROTECTED | PRIVATE
+;
+
+ConstructorDeclarator:
+	name=SimpleTypeName
+	"(" ( params+=FormalParameter (=> "," params+=FormalParameter )* )? ")"
+;
+
+FormalParameter:
+	type=Type variable=VariableDeclaratorId
+;
+
+Exceptions:
+	THROWS exceptions+=ClassType (=> "," exceptions+=ClassType )*
+;
+
+ConstructorBody:
+	"{" invocation=ExplicitConstructorInvocation? declarations+=BlockStatement* "}"
+;
+
+ExplicitConstructorInvocation:
+	( keyword=THIS  "(" args=ArgumentList? ")" )
+	| ( keyword=SUPER "(" args=ArgumentList? ")" )
+;
+
+FieldDeclaration:
+	modifiers+=FieldModifier*
+	type=Type variables+=VariableDeclarator (=> "," variables+=VariableDeclarator )* ";"
+;
+
+FieldModifier:
+	PUBLIC | PROTECTED | PRIVATE | STATIC | FINAL | TRANSIENT | VOLATILE
+;
+
+VariableDeclarator:
+	name=VariableDeclaratorId
+	( "=" value=VariableInitializer )?
+;
+
+VariableDeclaratorId:
+	ID ( "[]" )*
+;
+
+VariableInitializer:
+	Expression | ArrayInitializer
+;
+
+MethodDeclaration:
+	signature=MethodHeader ( body=Block | ";" )
+;
+
+MethodHeader:
+	modifiers+=MethodModifier*
+	returnType=ResultType header=MethodDeclarator throws=Exceptions?
+;
+
+ResultType:
+	Type | VOID
+;
+
+MethodModifier:
+	PUBLIC | PROTECTED | PRIVATE | STATIC | ABSTRACT | FINAL | SYNCHRONIZED | NATIVE
+;
+
+MethodDeclarator:
+	name=ID
+	"(" ( params+=FormalParameter (=> "," params+=FormalParameter)* )? ")"
+;
+
+InterfaceDeclaration:
+	modifiers+=InterfaceModifier*
+	INTERFACE name=ID extends=ExtendsInterfaces? body=InterfaceBody
+;
+
+InterfaceModifier:
+	PUBLIC | ABSTRACT
+;
+
+ExtendsInterfaces:
+	keyword=EXTENDS interfaces+=InterfaceType ( "," interfaces+=InterfaceType )*
+;
+
+InterfaceBody:
+	"{" declarations+=InterfaceMemberDeclaration* "}"
+;
+
+InterfaceMemberDeclaration:
+	ConstantDeclaration | AbstractMethodDeclaration
+;
+
+ConstantDeclaration:
+	modifiers+=ConstantModifiers* type=Type constant=VariableDeclarator
+;
+
+ConstantModifiers:
+	PUBLIC | STATIC | FINAL
+;
+
+AbstractMethodDeclaration:
+	modifiers+=AbstractMethodModifier*
+	returnType=ResultType header=MethodDeclarator throws=Exceptions? ";"
+;
+
+AbstractMethodModifier:
+	PUBLIC | ABSTRACT
+;
+
+ArrayInitializer:
+	"{" ( values+=VariableInitializer (=> "," values+=VariableInitializer )* )? ","? "}"
+;
+
+Type:
+	( name=PrimitiveType | name=ReferenceType ) ArrayType*
+;
+
+PrimitiveType:
+	NumericType | BOOLEAN
+;
+
+NumericType:
+	IntegralType | FloatingType
+;
+
+IntegralType:
+	BYTE | SHORT | INT | LONG | CHAR
+;
+
+FloatingType:
+	FLOAT | DOUBLE
+;
+
+ReferenceType:
+	TypeName
+;
+
+ClassType:
+	TypeName
+;
+
+InterfaceType:
+	TypeName
+;
+
+ArrayType:
+	"[]"
+;
+
+Block:
+	"{" declarations+=BlockStatement* "}"
+;
+
+BlockStatement:
+	( LocalVariableDeclaration ";" ) | Statement
+;
+
+LocalVariableDeclaration:
+	type=Type variables+=VariableDeclarator (=> "," variables+=VariableDeclarator )*
+;
+
+Statement:
+	EmptyStatement
+	| LabeledStatement
+	| IfStatement
+	| WhileStatement
+	| ForStatement
+	| Block
+	| ( StatementExpression ";" )
+	| SwitchStatement
+	| DoStatement
+	| BreakStatement
+	| ContinueStatement
+	| ReturnStatement
+	| SynchronizedStatement
+	| ThrowsStatement
+	| TryStatement
+;
+
+EmptyStatement:
+	";"
+;
+
+LabeledStatement:
+	label=ID ":" statement=Statement
+;
+
+StatementExpression:
+	=> Assignment
+	| PreIncrementExpression
+	| PreDecrementExpression
+	|=> PostfixExpression
+	|=> MethodInvocation
+	|=> ClassInstanceCreationExpression
+;
+
+IfStatement:
+	IF "(" condition?=Expression ")" then=Statement
+	(=> ELSE else=Statement )?
+;
+
+SwitchStatement:
+	SWITCH "(" expression=Expression ")" "{"
+	( ( CASE constants+=ConstantExpression ":" )
+	| ( DEFAULT ":" )
+	| statements+=BlockStatement )* "}"
+;
+
+WhileStatement:
+	WHILE "(" condition?=Expression ")" statement=Statement
+;
+
+DoStatement:
+	DO statement=Statement WHILE "(" condition?=Expression ")" ";"
+;
+
+ForStatement:
+	FOR "(" initExpr=ForInit? ";" condition?=Expression? ";" updateExpr=ForUpdate? ")"
+	statement=Statement
+;
+
+ForInit:
+	( expressions +=StatementExpression (=> "," expressions+=StatementExpression )* )
+	| localVariable=LocalVariableDeclaration
+;
+
+ForUpdate:
+	( expressions +=StatementExpression (=> "," expressions+=StatementExpression )* )
+;
+
+BreakStatement:
+	BREAK    reference=ID? ";"
+;
+
+ContinueStatement:
+	CONTINUE reference=ID? ";"
+;
+
+ReturnStatement:
+	RETURN expression=Expression? ";"
+;
+
+ThrowsStatement:
+	THROW  expression=Expression  ";"
+;
+
+SynchronizedStatement:
+	SYNCHRONIZED "(" expression=Expression ")" body=Block
+;
+
+TryStatement:
+	TRY tryBody=Block
+	(=> CATCH "(" params+=FormalParameter ")" catchesBody+=Block )*
+	(=> FINALLY finallyBody=Block )?
+;
+
+ConstantExpression:
+	Expression
+;
+
+Expression:
+	AssignmentExpression
+;
+
+AssignmentExpression:
+	=> ConditionalExpression | Assignment
+;
+
+Assignment:
+	object=LeftHandSide operator=AssignmentOperator value=AssignmentExpression
+;
+
+LeftHandSide:
+	=> ExpressionName | => FieldAccess | => ArrayAccess
+;
+
+AssignmentOperator:
+	"=" | "*=" | "/=" | "%=" | "+=" | "-=" | "<<=" | ">>=" | ">>>=" | "&=" | "^=" | "|="
+;
+
+ConditionalExpression:
+	condition=ConditionalOrExpression
+	(=> "?" then=Expression ":" else=ConditionalExpression )?
+;
+
+ConditionalOrExpression:
+	operands+=ConditionalAndExpression
+	(=> operators+="||" operands+=ConditionalAndExpression )*
+;
+
+ConditionalAndExpression:
+	operands+=InclusiveOrExpression
+	(=> operators+="&&" operands+=InclusiveOrExpression )*
+;
+
+InclusiveOrExpression:
+	operands+=ExclusiveOrExpression
+	(=> operators+="|" operands+=ExclusiveOrExpression )*
+;
+
+ExclusiveOrExpression:
+	operands+=AndExpression
+	(=> operators+="^" operands+=AndExpression )*
+;
+
+AndExpression:
+	operands+=EqualityExpression
+	(=> operators+="&" operands+=EqualityExpression )*
+;
+
+EqualityExpression:
+	operands+=RelationalExpression
+	(=> operators+=( "==" | "!=" ) operands+=RelationalExpression )*
+;
+
+RelationalExpression:
+	operands+=ShiftExpression
+	( => ( operators+=( "<" | ">" | "<=" | ">=" ) operands+=ShiftExpression )
+	| => ( operators+=INSTANCEOF classes+=ReferenceType ) )*
+;
+
+ShiftExpression:
+	operands+=AdditiveExpression
+	(=> operators+=( "<<" | ">>" | ">>>" ) operands+=AdditiveExpression )*
+;
+
+AdditiveExpression:
+	operands+=MultiplicativeExpression
+	(=> operators+=( "+" | "-" ) operands+=MultiplicativeExpression )*
+;
+
+MultiplicativeExpression:
+	operands+=NoArrayExpression
+	(=> operators+=( "*" | "/" | "%" ) operands+=NoArrayExpression )*
+;
+
+CastExpression:
+	=> "(" type=PrimitiveType ")" operand=NoArrayExpression
+	|=> "(" type=ReferenceType ")" operand=NoArrayExpressionWithoutMinus
+;
+
+NoArrayExpression:
+	PreIncrementExpression
+	| PreDecrementExpression
+	| operator="+" operand=NoArrayExpression
+	| operator="-" operand=NoArrayExpression
+	| NoArrayExpressionWithoutMinus
+;
+
+PreDecrementExpression:
+	operator="--" operand=NoArrayExpression
+;
+
+PreIncrementExpression:
+	operator="++" operand=NoArrayExpression
+;
+
+NoArrayExpressionWithoutMinus:
+	=> PostfixExpression
+	| operator="~" operand=NoArrayExpression
+	| operator="!" operand=NoArrayExpression
+	| CastExpression
+;
+
+PostfixExpression:
+	( => object=Primary | reference=ExpressionName ) operators+=( "--" | "++" )*
+;
+
+MethodInvocation:
+	( method=MethodName    "(" args=ArgumentList? ")" )
+	| => ( object =Primary "." method=ID  "(" args=ArgumentList? ")" )
+	| => ( keyword=SUPER   "." method=ID  "(" args=ArgumentList? ")" )
+;
+
+FieldAccess:
+	( object=Primary "." field=ID ) | => ( keyword=SUPER "." field=ID )
+;
+
+Primary:
+	=> PrimaryNoNewArray | PrimaryNewArray
+;
+
+PrimaryNoNewArray:
+	( literal=Literal
+	| keyword=THIS
+	| ( "(" Expression ")" )
+	| class=ClassInstanceCreationExpression
+	| keyword =SUPER
+	| ( method=MethodName "(" args+=ArgumentList? ")" )
+	| ( reference=ExpressionName  dimensions+=ArrayExpression ) )
+	=> ( ( "." fields+=ID ( "(" args+=ArgumentList? ")" )? )
+	| dimensions+=ArrayExpression )*
+;
+
+PrimaryNewArray:
+	array=ArrayCreationExpression
+	=> ( ( "." fields+=ID ( "(" args+=ArgumentList? ")" )? )
+	| dimensions+=ArrayExpression )*
+;
+
+ClassInstanceCreationExpression:
+	NEW type=ClassType "(" args=ArgumentList? ")"
+;
+
+ArgumentList:
+	declarations+=Expression (=> "," declarations+=Expression )*
+;
+
+ArrayCreationExpression:
+	NEW ( type=PrimitiveType | type=TypeName )
+	=> dimensions+=ArrayExpression+ layers+=ArrayType*
+;
+
+ArrayExpression:
+	"[" index=Expression "]"
+;
+
+ArrayAccess:
+	( => reference=ExpressionName | array=PrimaryNoNewArray ) field=ArrayExpression
+;
+
+PackageName:
+	ID
+	(=> "." ID )*
+;
+
+TypeName:
+	ID
+	(=> "." ID )*
+;
+
+SimpleTypeName:
+	ID
+;
+
+ExpressionName:
+	ID
+	(=> "." ID )*
+;
+
+MethodName:
+	ID
+	(=> "." ID )*
+;
+
+AmbiguousName:
+	ID
+	( => "." ID )*
+;
+
+Literal:
+	IntegerLiteral | FloatingLiteral | BooleanLiteral | CHARACTER_LITERAL | STRING_LITERAL | NULL
+;
+
+IntegerLiteral:
+	( DECIMAL_NUMERAL | HEX_NUMERAL | OCTAL_NUMERAL ) ( "l" | "L" )?
+;
+
+FloatingLiteral:
+	( ( DECIMAL_NUMERAL "." DECIMAL_NUMERAL* ) | ( "." DECIMAL_NUMERAL ) | DECIMAL_NUMERAL )
+	FLOAT_PART_COMPLEMENT
+;
+
+BooleanLiteral:
+	TRUE | FALSE
+;
+
+terminal DOC_COMMENT:
+	"/*" -> "*/"
+;
+
+terminal SL_COMMENT:
+	"//" !( "\n" | "\r" )* ( "\r"? "\n" )?
+;
+
+terminal WS:
+	( " " | "\t" | "\r" | "\n" )+
+;
+
+terminal ABSTRACT:
+	"abstract"
+;
+
+terminal AMPERSAND:
+	"ampersand"
+;
+
+terminal BOOLEAN:
+	"boolean"
+;
+
+terminal BREAK:
+	"break"
+;
+
+terminal BYTE:
+	"byte"
+;
+
+terminal CASE:
+	"case"
+;
+
+terminal CATCH:
+	"catch"
+;
+
+terminal CHAR:
+	"char"
+;
+
+terminal CLASS:
+	"class"
+;
+
+terminal CONST:
+	"const"
+;
+
+terminal CONTINUE:
+	"continue"
+;
+
+terminal DEFAULT:
+	"default"
+;
+
+terminal DO:
+	"do"
+;
+
+terminal DOUBLE:
+	"double"
+;
+
+terminal ELSE:
+	"else"
+;
+
+terminal EXTENDS:
+	"extends"
+;
+
+terminal FALSE:
+	"false"
+;
+
+terminal FINAL:
+	"final"
+;
+
+terminal FINALLY:
+	"finally"
+;
+
+terminal FLOAT:
+	"float"
+;
+
+terminal FOR:
+	"for"
+;
+
+terminal GOTO:
+	"goto"
+;
+
+terminal IF:
+	"if"
+;
+
+terminal IMPLEMENTS:
+	"implements"
+;
+
+terminal IMPORT:
+	"import"
+;
+
+terminal INSTANCEOF:
+	"instanceof"
+;
+
+terminal INT:
+	"int"
+;
+
+terminal INTERFACE:
+	"interface"
+;
+
+terminal LONG:
+	"long"
+;
+
+terminal NATIVE:
+	"native"
+;
+
+terminal NEW:
+	"new"
+;
+
+terminal NULL:
+	"null"
+;
+
+terminal PACKAGE:
+	"package"
+;
+
+terminal PRIVATE:
+	"private"
+;
+
+terminal PROTECTED:
+	"protected";
+
+terminal PUBLIC:
+	"public"
+;
+
+terminal RETURN:
+	"return"
+;
+
+terminal SHORT:
+	"short"
+;
+
+terminal STATIC:
+	"static"
+;
+
+terminal SUPER:
+	"super"
+;
+
+terminal SWITCH:
+	"switch"
+;
+
+terminal SYNCHRONIZED:
+	"synchronized"
+;
+
+terminal THIS:
+	"this"
+;
+
+terminal THREADSAFE:
+	"threadsafe"
+;
+
+terminal THROW:
+	"throw"
+;
+
+terminal THROWS:
+	"throws"
+;
+
+terminal TRANSIENT:
+	"transient"
+;
+
+terminal TRY:
+	"try"
+;
+
+terminal TRUE:
+	"true"
+;
+
+terminal VOID:
+	"void"
+;
+
+terminal VOLATILE:
+	"volatile"
+;
+
+terminal WHILE:
+	"while"
+;
+
+terminal ID:
+	( "a".."z" | "A".."Z" |"_" |"$" )
+	( "a".."z" | "A".."Z" |"_" |"$" | "0".."9" )*
+;
+
+terminal DECIMAL_NUMERAL:
+	"0" | ( NON_ZERO_DIGIT DIGIT* )
+;
+
+terminal fragment DIGIT:
+	"0" | NON_ZERO_DIGIT
+;
+
+terminal fragment NON_ZERO_DIGIT:
+	"1" .. "9"
+;
+
+terminal HEX_NUMERAL:
+	( "0x" | "0X" ) HEX_DIGIT+
+;
+
+terminal fragment HEX_DIGIT:
+	"0" .. "9" | "a" .. "f" | "A" .. "F"
+;
+
+terminal OCTAL_NUMERAL:
+	"0" OCTAL_DIGIT+
+;
+
+terminal fragment OCTAL_DIGIT:
+	"0" .. "7"
+;
+
+terminal FLOAT_PART_COMPLEMENT:
+	EXPONENT_PART? FLOAT_TYPE_SUFFIX?
+;
+
+terminal fragment EXPONENT_PART:
+	EXPONENT_INDICATOR SIGNED_INTEGER
+;
+
+terminal fragment EXPONENT_INDICATOR:
+	"e" | "E"
+;
+
+terminal fragment SIGNED_INTEGER:
+	( "+" | "-" ) DIGIT+
+;
+
+terminal fragment FLOAT_TYPE_SUFFIX:
+	"f" | "F" | "d" | "D"
+;
+
+terminal CHARACTER_LITERAL:
+	"'" . | !( "\\" | "'" ) "'"
+;
+
+terminal STRING_LITERAL:
+	'"' ( "\\" . | !( "\\" | '"' ) )* '"'
+;
+
